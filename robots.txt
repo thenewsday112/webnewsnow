@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://railfansday.github.io/newday15/sitemap.xml
+Sitemap: https://thenews112.github.io/webnewsnow/sitemap.xml
