@@ -1,0 +1,1872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<title>News Portal Indonesia - Page 2</title>
+<meta name="description" content="Page 2">
+<link rel="canonical" href="https://railfansday.github.io/newday15/page2.html">
+<style>
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#f4f6f8;margin:0;padding:20px;color:#333;line-height:1.6}
+.container{max-width:1000px;margin:0 auto}
+header{background:#1e293b;color:#fff;padding:20px;border-radius:12px;margin-bottom:20px;text-align:center;box-shadow:0 4px 6px rgba(0,0,0,.1)}
+header h1{margin:0;font-size:26px;letter-spacing:1px}
+nav{background:#fff;padding:10px;border-radius:12px;margin-bottom:24px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;box-shadow:0 2px 4px rgba(0,0,0,.05)}
+nav a{padding:8px 16px;border-radius:8px;color:#475569;text-decoration:none;font-weight:600;transition:all .2s;font-size:14px}
+nav a:hover,nav a.active{background:#2563eb;color:#fff}
+.article-card{background:#fff;padding:24px;margin-bottom:24px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);border-left:4px solid #2563eb}
+.article-card h2{margin:0 0 12px;font-size:22px;color:#1e293b}
+.article-meta{font-size:13px;color:#64748b;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid #e2e8f0}
+.article-meta a{color:#2563eb;text-decoration:none;font-weight:bold}
+.article-body{font-size:16px;line-height:1.8;color:#334155}
+.article-body img{max-width:100%;height:auto;border-radius:8px;margin:16px 0}
+.pagination{text-align:center;margin:40px 0;display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.pagination a{display:inline-block;padding:10px 16px;border-radius:8px;text-decoration:none;color:#334155;font-weight:bold;background:#fff;box-shadow:0 2px 4px rgba(0,0,0,.05);transition:all .2s}
+.pagination a:hover{background:#f1f5f9}
+.pagination a.active{background:#2563eb;color:#fff}
+footer{text-align:center;color:#64748b;font-size:14px;padding:30px 0;border-top:1px solid #e2e8f0;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="container">
+<header><h1>News Portal Indonesia</h1></header>
+<nav><a href="index.html" class="active">🏠 All News</a><a href="technology.html">📰 Technology</a><a href="business.html">📰 Business</a><a href="sports.html">📰 Sports</a><a href="entertainment.html">📰 Entertainment</a><a href="health.html">📰 Health</a><a href="other.html">📰 Other</a></nav>
+<h1 style="color:#1e293b;border-left:5px solid #2563eb;padding-left:15px;margin-bottom:30px;">News Portal Indonesia - Page 2</h1>
+<article class="article-card">
+    <h2>#82. Hill-Climbing Agent Quality with Agents CLI Evaluation</h2>
+    <div class="article-meta">
+        📅 Oct 29, 2026 &nbsp;|&nbsp; Category: <strong>Technology</strong> &nbsp;|&nbsp; 
+        <a href="https://developers.googleblog.com/hill-climbing-agent-quality-with-agents-cli-evaluation/" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/1_3.2e16d0ba.fill-1200x600.png" alt="Hill-Climbing Agent Quality with Agents CLI Evaluation" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://storage.googleapis.com/gweb-developer-goog-blog-assets/images/1_3.2e16d0ba.fill-1200x600.png" alt="Hill-Climbing Agent Quality with Agents CLI Evaluation" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>A live walkthrough of the Agents CLI eval loop, from a first run to regression tracking, model-backend experiments, and automated alerting</p>
+<p>Building an agent that works on a demo is a different problem from building an agent that stays working across model upgrades, tool changes, and new conversation shapes. The first takes a weekend; the second takes a loop. A team writes test cases, runs them, grades them, reads what failed, changes the agent, and runs the cases again. If the score goes up, the change was good. If it goes down, revert. Over weeks of this, the agent inches toward the ceiling of what the model, tools, and prompt can do together. The quality-engineering name for this is hill-climbing.</p>
+<p>The Agents CLI eval namespace was built around this loop. The commands are small and framework-agnostic: eval generate runs the agent against a dataset of cases, eval grade scores the generated traces, eval compare diffs two run results side by side, eval analyze clusters failures into themes, and eval optimize runs an automated hill-climbing pass on the agent's prompt.</p>
+<p>Below: baseline → regression → model swap → scheduling and alerting.</p>
+<p>The scaffold used throughout is the LangChain template that ships with Agents CLI v1.8.0. The setup is a single command:</p>
+<p>The scaffold ships with an eval dataset at tests/eval/datasets/basic-dataset.json, a config at tests/eval/eval_config.yaml, and a custom LLM-as-judge metric at tests/eval/response_quality.py. The config declares the metric to run:</p>
+<p>The metric grades each response on a 1-to-5 scale for accuracy, relevance, and clarity, using gemini-3.8-flash as the judge. The default dataset has a single trivial case, which is not enough for a hill-climb. The first thing we do is expand it to four cases that probe different behaviors:</p>
+<p>Four cases: a greeting, a weather question the mock tool handles with the hardcoded foggy response, a weather question for a city the tool defaults on, and an off-topic question that the agent has to decide how to handle. This is a small dataset by design; the hill-climbing loop pays off when the dataset is small enough to run on every change.</p>
+<p>With the dataset in place, we run eval generate to drive the agent against each case, then eval grade to score the resulting traces:</p>
+<p>Mean 4.0 out of 5 across four cases, with a standard deviation of 1.41. That stdev tells us immediately that the cases are not scoring uniformly, which is a healthier starting point than a flat 5.0 across the board. A flat 5.0 either means the agent is perfect (unlikely) or the dataset is too easy to show variation. 4.0 with real spread is a hill to climb.</p>
+<p>To demonstrate the loop, we introduce a realistic regression. A developer working across several agent projects accidentally pastes the wrong system prompt into our weather agent: a chef persona meant for a different codebase. In app/agent.py:</p>
+<p>The change compiles, the agent still runs, and nothing in the pre-eval pipeline (lint, unit tests, type checks) catches it. Re-running the same eval generate plus eval grade sequence produces:</p>
+<p>Mean 2.75, down from 4.0. The judge agrees with our intuition that a chef persona on a weather agent is a worse product than a general-purpose helpful assistant. The stdev also tightened from 1.41 to 0.96, consistent with the chef prompt pushing most cases toward the same mediocre range.</p>
+<p>A 1.25-point drop on a 1-to-5 scale is substantial, and the kind of regression that can slip through code review when the diff looks small ("one string literal changed"). The loop surfaced the change at all, with a specific number attached to it, before the agent reached production.</p>
+<p>Mean scores are a start; the per-case diff is where the hill-climb happens. eval compare reads two result files and produces a structured JSON diff:</p>
+<p>The output lists which keys changed and which stayed the same:</p>
+<p>The differences object has the full per-case breakdown with the baseline and candidate values side by side. For a hill-climbing workflow, we typically pipe the output through jq or a small Python script to extract the signal; the raw JSON is the complete evidence.</p>
+<p>Walking the two result files and lining up the scores per case shows where the regression landed:</p>
+<p>Three cases dropped, one held. The most important of the three is sf_weather: the chef persona pulled the model's attention away from the registered get_weather tool, so the agent stopped calling it and started making up weather values. Unit tests can't catch this: the code runs, the tool is still registered, but the model's behavior around it has shifted. Only an end-to-end eval that scores the response in context surfaces this.</p>
+<p>The mean drop by itself (−1.25) is a clear signal, but the per-case breakdown is what tells the developer where to look. A one-line system-prompt change propagated through three different cases in three different ways: greeting lost a point on tone, sf_weather lost two on tool usage, off_topic lost two on scope creep.</p>
+<p>A common hill-climbing question is whether a cheaper or faster model would do the job acceptably. For the LangChain template, the model is defined in app/agent.py:</p>
+<p>We swap gemini-3.8-flash for gemini-2.5-flash (restoring the helpful system prompt first), re-run eval generate plus eval grade, and compare the two result files. The mean drops from 4.00 to 2.75, the same magnitude as the chef-prompt regression, but the per-case breakdown tells a completely different story:</p>
+<p>The cheaper model matched 3.8-flash exactly on the greeting and rome_weather cases and lost a point on sf_weather (slightly less polished phrasing). The whole visible drop traces to off_topic, where the cheaper model refused with a hedge about the event "not having happened yet" (a training-cutoff artifact), and the judge marked it harshly.</p>
+<p>The lesson is that the summary number is misleading. Look only at the mean and you'd call gemini-2.5-flash as bad as the chef prompt. Look at the per-case breakdown and you'd call it a reasonable swap for most of the agent's workload, with one case (handling out-of-scope questions about recent events) exposing a real limitation. If the production distribution of user questions matches the first three cases more than the fourth, the swap is worth considering. If off_topic-style questions are common, it is not.</p>
+<p>Two caveats on this experiment. First, model swaps interact with the prompt: a prompt tuned for a stronger model often leaks capability when ported to a weaker one, so the right comparison is "weaker model with a prompt tuned for it" versus "stronger model with its own tuned prompt." Second, the Vertex AI Eval Service calls a judge model to grade the traces, and the judge is held constant across the comparison. Changing the judge is a different experiment and should be done separately.</p>
+<p>Agents CLI does not ship a scheduler, but the eval commands are designed to drop into standard infrastructure. The pattern we can use here is a cron job or Cloud Scheduler trigger that runs eval generate plus eval grade on a cadence and writes the results to a persistent location:</p>
+<p>A nightly run against a stable regression dataset catches drift from model updates, data changes in the agent's tools, and dependencies that shift under the agent's feet. For a production agent, the scheduled run also captures the model vendor's quiet upgrades, which can move the agent's behavior without any change on our side. The dataset for the scheduled run is typically larger than the one used in the inner loop (dozens to hundreds of cases rather than a few), since it only runs once a day.</p>
+<p>The scheduled run produces a result file every day, but a file nobody looks at is not an alert. The pattern here can be a wrapper script that compares each new run's mean against a baseline (the previous run, or a committed known-good) and exits non-zero when the drop exceeds a threshold. The non-zero exit is what triggers the alert from the surrounding scheduler.</p>
+<p>Running it against our regression demo (baseline 4.0, candidate 2.75 from the chef-prompt run):</p>
+<p>And against an identical pair (self-compare):</p>
+<p>The non-zero exit code is what a cron job, Cloud Scheduler, or GitHub Actions step picks up to send the alert.</p>
+<p>For ADK projects, eval optimize runs an automated hill-climbing pass on the agent's prompt using the GEPA framework (not currently supported for the LangChain extension). The command takes a dataset and a target metric, proposes prompt variants, grades each one, keeps the variants that improve the metric, and iterates. The output is a set of candidate prompts ranked by their eval score, which a human then reviews and promotes to the agent definition.</p>
+<p>Two things to understand about eval optimize. First, it is scoped to prompt optimization, not to arbitrary agent changes: the agent's tools, structure, and model stay fixed. Second, GEPA sometimes finds genuine improvements and sometimes finds prompt variants that score higher on the specific metric by overfitting to its wording. The reviewer is the control. For projects where the loop applies, the discipline is to run eval optimize on the regression dataset (where improvements are measurable) and to review the candidate prompts carefully before promotion.</p>
+<p>A few patterns and anti-patterns from running this loop ourselves and watching teams do the same.</p>
+<p>Lead with a small, representative dataset, not a comprehensive one. The temptation when starting an eval is to try to cover every edge case the agent will ever see. The result is a dataset that takes an hour to run and that nobody runs on a change. Four cases that run in under a minute, as above, exercise the main behaviors and get run on every change. A regression dataset of three hundred cases that runs for an hour becomes a release gate at best and shelfware at worst.</p>
+<p>Snapshot result files, not scores. The score is a summary; the result file is the evidence. When a regression surfaces three weeks after a prompt change, having the full result JSON from before and after the change (not just the mean score) is what lets eval compare show the specific case that moved. The per-case breakdown in Step 4 above would not have been possible from scores alone.</p>
+<p>Separate the dataset from its expectations. The dataset is the inputs. The eval config is the expectations. They evolve on different cadences: the dataset grows as new real-world cases surface in production, and the config evolves as the team's definition of "good" matures. Keeping them in separate files, both committed to version control, makes it clear which half changed when a score moves.</p>
+<p>Treat summary metrics with suspicion. The model-swap experiment in Step 5 is the clearest example. The mean dropped by half a point, but the per-case breakdown showed the drop was concentrated in one case while the others held or improved. A team that only looked at the mean would have made the wrong call.</p>
+<p>More evals do not automatically lead to more fixes. A recent controlled study we ran found that coding agents using agents-cli run four times as many evals as coding agents without it, but change the agent after an eval about as often as the baseline. The behavior gain comes from what the skills put into the build at the start, not from the inner iteration. Evals are necessary for quality, but the quality comes from acting on what the evals show.</p>
+<p>Scaffold an Agents CLI project and run the first eval loop in a handful of commands:</p>
+<p>The full eval namespace is documented at google.github.io/agents-cli/cli. The source code, including the first-party eval primitives, is at github.com/google/agents-cli.</p>
+<p>Architecting Governed, Self-Evolving AI Agents on Google Cloud</p>
+<p>Fast, reliable A2UI, with swappable inference formats</p>
+<p>Smaller apps and faster GPU inference with LiteRT in Google Play services</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://developers.googleblog.com/hill-climbing-agent-quality-with-agents-cli-evaluation/" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#74. production notes test</h2>
+    <div class="article-meta">
+        📅 Oct 29, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://greatist.com/health/production-notes-test" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        
+        
+            
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Konten tidak tersedia.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://greatist.com/health/production-notes-test" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#13. &lt;a href=&quot;https://www.fiercehealthcare.com/providers/eli-lillys-340b-data-policy-draws-new-opposition-missouri-ag-massachusetts-hospitals&quot; hreflang=&quot;en&quot;&gt;Eli Lilly&#x27;s 340B data policy draws new opposition from Missouri AG, Massachusetts hospitals&lt;/a&gt;</h2>
+    <div class="article-meta">
+        📅 Oct 28, 2026 &nbsp;|&nbsp; Category: <strong>Business</strong> &nbsp;|&nbsp; 
+        <a href="https://www.fiercehealthcare.com/providers/eli-lillys-340b-data-policy-draws-new-opposition-missouri-ag-massachusetts-hospitals" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://qtxasset.com/quartz/qcloud5/media/image/Featured%20Images%20-%20Fierce%20Healthcare%20-%202024-09-30T152618.938.jpg?VersionId=yGsg2jWo5vzdWJOoBfCScWPA0n6vYJFH" alt="&lt;a href=&quot;https://www.fiercehealthcare.com/providers/eli-lillys-340b-data-policy-draws-new-opposition-missouri-ag-massachusetts-hospitals&quot; hreflang=&quot;en&quot;&gt;Eli Lilly&#x27;s 340B data policy draws new opposition from Missouri AG, Massachusetts hospitals&lt;/a&gt;" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://qtxasset.com/quartz/qcloud5/media/image/Featured%20Images%20-%20Fierce%20Healthcare%20-%202024-09-30T152618.938.jpg?VersionId=yGsg2jWo5vzdWJOoBfCScWPA0n6vYJFH" alt="<a href="https://www.fiercehealthcare.com/providers/eli-lillys-340b-data-policy-draws-new-opposition-missouri-ag-massachusetts-hospitals" hreflang="en">Eli Lilly's 340B data policy draws new opposition from Missouri AG, Massachusetts hospitals</a>" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Eli Lilly’s policy requiring 340B hospitals submit claims-level data in order to receive statutory drug discounts garnered a fresh wave of pushback this week from Missouri’s attorney general and a cadre of Massachusetts hospitals, joining others who have described the requirements as unlawful.</p>
+<p>Lilly announced its controversial policy for 340B dispensations in January and first put it into effect for a subset of hospitals in June. It applies to all pharmacy and medical dispensations, including in-house pharmacy and contract pharmacy dispenses, in most states.</p>
+<p>The company said doing so would allow it to spot instances when a drug purchase is improperly granted multiple discounts under overlapping programs. Hospitals have contended that the extra scrutiny is unnecessary and introduces substantial administrative burden.</p>
+<p>Missouri Attorney General Catherine Hanaway has come in on the side of the opposition. On Monday, she issued a cease-and-desist letter to Lilly, writing that the policy violates the Missouri Merchandising Practices Act, a consumer protection law. If the drugmaker doesn’t end its requirement for Missouri providers, the policy “may result in subsequent legal action,” including an injunction and monetary civil penalties, the letter reads.</p>
+<p>“Big Pharma does not get to bully Missouri hospitals or hold prescription drug prices hostage,” Hanaway said in an accompanying release. “Eli Lilly is abusing its market power to impose higher prescription prices in Missouri. These tactics fall hardest on rural communities that depend on the 340B program to keep clinics open and ensure patients receive the care they need.”</p>
+<p>Hanaway’s letter and release highlight Lily’s decision to end discounts for University of Missouri Health Care in July. The system later agreed to provide the data as requested, but “now bears the heavy costs and burdens of complying with Lilly’s requirements,” the attorney general’s office wrote.</p>
+<p>A day later, six Massachusetts hospitals hit Lilly with a new lawsuit to block the policy. Massachusetts General Hospital, Brigham and Women’s Hospital, Salem Hospital, UMass Memorial Medical Center and Umass Memorial Health — Harrington Hospital filed the lawsuit.</p>
+<p>Their complaint filed in federal court describes “corporate extortion” from “the largest pharmaceutical company in the world” that “deprives them of resources essential to serving their most vulnerable patients.”</p>
+<p>The hospitals “rightfully refused to comply” with the policy and had their 340B discounts pulled, echoing the claimed injuries from others who have sued over the policy, such as Tampa General Hospital and Mary Hitchcock Memorial Hospital. Failing to “capitulate” would cost the plaintiff Massachusetts hospitals “tens of millions of dollars in annual losses” collectively.</p>
+<p>However, the new complaint goes on to criticize Lilly’s 340B ESP platform, “a unilaterally selected, private-equity-owned third-party platform” whose use is required by Lilly as “a data dragnet that, so far, has been free from public scrutiny.”</p>
+<p>The hospitals said the platform’s claim to de-identify submitted claims data is superficial, and through non-negotiable contractual terms allows the company to use data beyond integrity review while limiting the company’s liability to “the unconscionable sum of $100.” Hospitals forced to use the platform to receive the drug discounts, meanwhile, take on “the full burden of privacy, cybersecurity and regulatory compliance risk” related to the claims data, which they said is protected health information under the Health Insurance Portability and Accountability Act (HIPAA).</p>
+<p>“Lilly has thus intentionally abused its substantial market power to create an untenable ‘Sophie’s choice’: Plaintiffs must capitulate to Lilly’s demands, incur higher operational costs, and surrender valuable privacy-protected Claims Data on non-negotiable Terms, or forgo their 340B savings, absorb substantially higher upfront drug costs, and jeopardize services for vulnerable patients,” they wrote in the complaint.</p>
+<p>The hospitals wrote that the practices violate Massachusetts’ consumer protection law and are unjustly enriching the company. They asked the court to enjoin Lilly from enforcing its policy and terms, and to require compensatory damages “including but not limited to the amounts plaintiffs have paid to defendant above the applicable 340B Ceiling Price, lost 340B savings and other consequential damages.”</p>
+<p>Fierce Healthcare has reached out to Lilly for comment on the attorney general’s letter and the new lawsuit. Lilly has historically disputed hospitals’ portrayal of its policy’s burdens in prior litigation and asserted that the required data is already routinely collected by the organizations.</p>
+<p>This week’s developments add to the substantial legal showdowns surrounding the controversial drug discount program, which has ballooned in scale over the last several years. Drugmakers critical of the program have sought to impose restrictions on contract pharmacies, prompting litigation in states where lawmakers have prohibited such restrictions.</p>
+<p>Policymakers’ own appetite to curb the subsidy program, such as through a pilot rebate program, has also spurred its fair share of litigation.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.fiercehealthcare.com/providers/eli-lillys-340b-data-policy-draws-new-opposition-missouri-ag-massachusetts-hospitals" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#16. &lt;a href=&quot;https://www.fiercehealthcare.com/payers/judge-rejects-nc-state-health-plans-request-block-atrium-affordability-program&quot; hreflang=&quot;en&quot;&gt;Atrium Health, NC State Health Plan reach deal in preferred provider network dispute&lt;/a&gt;</h2>
+    <div class="article-meta">
+        📅 Oct 28, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.fiercehealthcare.com/payers/judge-rejects-nc-state-health-plans-request-block-atrium-affordability-program" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://qtxasset.com/quartz/qcloud5/media/image/fiercepharma/1645636179/GettyImages-1219772142.jpg/GettyImages-1219772142.jpg?VersionId=DCKdcoBBdTWZzQGgMPKRDdFzCtrdBGGE" alt="&lt;a href=&quot;https://www.fiercehealthcare.com/payers/judge-rejects-nc-state-health-plans-request-block-atrium-affordability-program&quot; hreflang=&quot;en&quot;&gt;Atrium Health, NC State Health Plan reach deal in preferred provider network dispute&lt;/a&gt;" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://qtxasset.com/quartz/qcloud5/media/image/fiercepharma/1645636179/GettyImages-1219772142.jpg/GettyImages-1219772142.jpg?VersionId=DCKdcoBBdTWZzQGgMPKRDdFzCtrdBGGE" alt="<a href="https://www.fiercehealthcare.com/payers/judge-rejects-nc-state-health-plans-request-block-atrium-affordability-program" hreflang="en">Atrium Health, NC State Health Plan reach deal in preferred provider network dispute</a>" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Atrium Health and North Carolina's public health insurance plan have come to terms on a dispute over inclusion in a tiered network and an alternative pricing program the health system had planned to implement in response.</p>
+<p>The pair announced in a joint statement the signing of a new multi-year contract on Tuesday, a week before the close of open enrollment for the North Carolina State Health Plan. The deal followed months of negotiation, exchanged barbs and a trip to the courtroom (see that coverage below the break).</p>
+<p>“Thank you to our hundreds of thousands of members who have trusted us and trusted the process to bring you the high-quality care you want at costs we can all afford,” North Carolina Treasurer Brad Briner, who chairs the State Health Plan Board of Trustees. “We know there has been a lot of confusion for our members right now as we are in the middle of Open Enrollment. We hope this agreement provides members with more clarity about provider tiers and puts concerns to rest while avoiding drastic premium and benefit changes statewide.”</p>
+<p>The 750,000-member plan had recently implemented a Preferred Provider Program, authorized under state statute, that reduced members’ copays if they received care from the lower-cost providers assigned to preferred tiers. Most of Atrium's facilities and providers did not receive a preferred tier, leading the large nonprofit to unveil an Affordability Protection Program that it said would charge plan members smaller copays. The state tried, and failed, to have Atrium's program blocked, noting that the system would still charge its full rates to the plan at taxpayers' long-term expense.</p>
+<p>Under the new agreement, Atrium's hospitals that did not initially receive a preferred designation will be added to the Preferred Provider Program's in-network Access tier (the middle of three tiers). The parties said the decision will improve access and reduce costs for members while still reducing the plan's overall spending.</p>
+<p>“For every teacher, state employee and family member we serve at Atrium Health, this new agreement is about providing the peace of mind that comes from knowing the caregivers they trust will remain within reach,” said Steve Smoot, president of Advocate Health's North Carolina and Georgia Division, which includes Atrium Health. “We are grateful to move forward together with a shared commitment to making high-quality care more accessible and affordable for every State Health Plan member who depends on us.”</p>
+<p>The agreement sees Atrium sunsetting its Affordability Protection Program and the state withdrawing its outstanding legal complaint. The pair wrote in their statement that they recognize the past few months have been unsettling for members and their families, and each committed to put any differences aside to move forward and keep working together for the benefit of every teacher and state employee who counts on them both.</p>
+<p>Atrium Health scored an early courtroom win on Tuesday when a judge rejected the state of North Carolina’s request for a temporary restraining order on an affordability program the health system plans to implement for State Health Plan members in the 2027 calendar year.</p>
+<p>The Atrium Health Affordability Protection Program, unveiled last week, would lower members’ out-of-pocket costs but, according to the State Treasurer of North Carolina’s office, effectively shift those costs back to the plan.</p>
+<p>Notably, the cost sharing would make Atrium’s facilities more appealing to plan members than other health systems in the state with lower rates. The office had recently implemented a Preferred Provider Program, authorized under state statute, that reduced members’ copays if they received care from the lower-cost providers.</p>
+<p>Atrium, which only had some of its services and locations designated as a preferred provider, announced its Affordability Protection Program bringing copays even lower than those in the state’s Preferred Provider Program “to deceive Plan participants into believing” that its services were lower cost, the state wrote in a complaint filed last Friday. In reality, the state said, Atrium’s program would “maintain higher reimbursement rates … without reducing the overall cost of services, particularly for high-cost services and very sick patients who use a significant number of services.”</p>
+<p>The treasurer in recent weeks has described Atrium’s program as unlawful and a “shell game” that would bankrupt the plan. The state also alleged in its complaint that Atrium acted in bad faith by waiting until just days before the 750,000-member plan’s open enrollment period to sow confusion among plan members and “undermine” the state’s program.</p>
+<p>Atrium has described its program as addressing “any remaining affordability gap” for plan members and a response to cost concern feedback from clinicians and other community members—and noted in its announcement that the Affordability Protection Program “is not affiliated with, authorized by or endorsed by the NC State Treasurer, the NC State Health Plan or the State of North Carolina.</p>
+<p>After hearing arguments surrounding the temporary restraining order request, Judge Matthew Houston denied the state’s request from the bench, allowing Atrium’s program to go into effect during the upcoming Open Enrollment period and 2027 plan year.</p>
+<p>"We're pleased by the court’s ruling to deny the temporary injunction," Steve Smoot, president of Atrium parent company Advocate Health's North Carolina and Georgia Division, where Atrium is located, said in a Tuesday statement. "From the very start, this has been about the people we serve: the more than 80,000 teachers, first responders, state employees and their families, from across North Carolina, who trust Atrium Health with their care. Thousands of State Health Plan members have told us they didn't want to choose between paying more and leaving the physicians and care teams who have walked with them through some of life's most serious health challenges."</p>
+<p>The treasurer’s office, in its own statement, said that “while this is not the outcome we were hoping for, … the judge did acknowledge our argument that the Program could cause irreparable harm to the Plan.”</p>
+<p>The State Health Plan said it’s still exploring “other legal pathways,” but is also weighing how best to maintain solvency through 2027 and beyond. That could include raising premiums for all of its members by $50 per month in 2028, it said.</p>
+<p>“The State Health Plan is funded by member and taxpayer dollars, and those resources are finite,” Treasurer Brad Briner said in a statement. “When a single provider can manipulate the Plan’s cost structure, dictate how benefits are designed or undermine our tiered network, it won’t just be disruptive—it could be catastrophic for the Plan, its members and taxpayers.”</p>
+<p>Atrium, in its statement, said that the office’s suggestions of a premium increase haven’t been detailed, and would be “the result of the Plan’s own flawed design.” It also again contested the state’s characterization of its rates as high cost, and pointed to a September statement from the Plan that called Atrium “no more expensive than other leading systems in North Carolina” prior to the launch of its Preferred Provider tiering.</p>
+<p>The legal conflict had been simmering for months. Atrium said over the summer that it “was never engaged to compete for the full scope of services included in the program,” designations for which it first learned of through media reports. The treasurer’s office and the plan responded by likening Atrium’s statement to “a World Cup team that loses and immediately blames the referee.” The sides appeared to have made progress in ongoing talks by September, but Atrium ultimately moved to launch its Affordability Protection Program on Oct. 6.</p>
+<p>Atrium, on Tuesday, said that it maintains an offer to the plan to match—rather than undercut—the preferred provider tier discounts to receive the designation.</p>
+<p>"We share the State Health Plan's goal of staying strong for the next generation of public servants," Smoot said. "Our offer to match the Preferred Tier discounts and designation is still on the table, and it would save the Plan money. We remain ready to sit down and find a path forward together, for every member the Plan serves."</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.fiercehealthcare.com/payers/judge-rejects-nc-state-health-plans-request-block-atrium-affordability-program" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#5. Drug-Resistant ‘Superbugs’ Linked to More Than 50,000 Deaths a Year, CDC Says</h2>
+    <div class="article-meta">
+        📅 Oct 28, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/drug-resistant-infections-deaths-rising-cdc" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2208665587_facebook_1200x630-1200x628.jpg" alt="Drug-Resistant ‘Superbugs’ Linked to More Than 50,000 Deaths a Year, CDC Says" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2208665587_facebook_1200x630-1200x628.jpg" alt="Drug-Resistant ‘Superbugs’ Linked to More Than 50,000 Deaths a Year, CDC Says" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>New data show a substantial nationwide increase in potentially deadly infections caused by drug-resistant pathogens.</p>
+<p>The updated Antimicrobial Resistance (AR) Threats Report from the Centers for Disease Control and Prevention (CDC) states that drug-resistant bacteria and fungi cause approximately 9.7 million infections in the United States each year. This is up from 2.8 million in a similar report from 2019.</p>
+<p>The estimated deaths in the United States from these drug-resistant pathogens have also risen from 35,000 to 50,800.</p>
+<p>The new report also noted that infections that commonly occur in people in the hospital account for more than 42,000 deaths and cost the U.S. healthcare system more than $12 billion.</p>
+<p>These findings are based on 2023 data. Officials from the CDC said that the increase in drug-resistant infections from 2019 partially reflects a real rise in infections caused by certain resistant bacteria and fungi. However, they also noted that data sources and methodologies have changed, and direct comparisons between the two reports shouldn’t be made.</p>
+<p>“These numbers are alarming by any measure but are particularly sobering when infectious diseases physicians connect real patients with these statistics in their everyday experience,” Wendy Armstrong, MD, President of the Infectious Diseases Society of America (IDSA), said in a statement.</p>
+<p>The CDC report highlighted 19 drug-resistant pathogens responsible for the 9.7 million annual infections. Four of these pathogens are classified as urgent threats, 13 as serious threats, and 2 as concerning.</p>
+<p>The CDC also maintains a watch list that currently includes six pathogens.</p>
+<p>The four pathogens classified as urgent threats are:</p>
+<p>William Schaffner, MD, a professor of the Division of Infectious Diseases at Vanderbilt University Medical Center, told Healthline that the reason for this increase in superbugs is, “Overuse of antibiotics; using them for too long or in circumstances where they do not offer a benefit.”</p>
+<p>“An example of the latter is the antibiotic treatment of common viral respiratory infections — antibiotics have no effect on viral infections. The widespread use of antibiotics kills off those bacteria that are susceptible to antibiotics, but then can leave a few bacterial survivors that are resistant to the effect of the antibiotics, resulting in the spread of these resistant strains,” he said.</p>
+<p>Monica Gandhi, MD, a professor of medicine at the University of California, San Francisco, agreed and added, “This widespread use leads to selective drug pressure on the pathogen to evolve resistance to these antibiotics, making them harder to treat.”</p>
+<p>“The risk to public health from these bugs is substantial. In fact, the World Health Organization (WHO) estimates up to 5 million deaths from these bugs worldwide every year, making these a substantial public health threat,” said Gandhi.</p>
+<p>Candida auris tops the list of urgent threats.</p>
+<p>Cases have increased nearly tenfold since the first detection in hospitals 10 years ago. This includes a more than 50% jump between 2022 and 2023.</p>
+<p>Candida auris is a fungus that is almost completely resistant to one class of antifungal medications. It has also shown emerging resistance to the other two classes.</p>
+<p>This fungus is often found on people’s skin, spreads rapidly in healthcare settings like hospitals, and affects some of the most vulnerable individuals.</p>
+<p>CRE is a family of multidrug-resistant bacterial pathogens. They have become increasingly difficult to treat and can share resistance with other bacteria.</p>
+<p>These bacteria also pose a significant threat to people in hospitals, especially those with devices such as ventilators and catheters. A recent study found that CRE cases at U.S. hospitals increased by 18% between 2019 and 2023.</p>
+<p>While those in hospitals are especially vulnerable to CRE, 67% of the cases in 2023 were in the community. However, some of these cases may have occurred in people with recent exposure to healthcare.</p>
+<p>Neisseria gonorrhoeae is the bacterium that causes gonorrhea, which is one of the most common sexually transmitted infections.</p>
+<p>The CDC report noted that only a few antibiotics can effectively treat this infection.</p>
+<p>Without effective treatment, gonorrhea can lead to:</p>
+<p>There are ways you can help prevent these superbugs:</p>
+<p>“[One] way individuals can help prevent the evolution of these superbugs is to not ask for antibiotics from their providers or urgent care settings in the setting of a viral infection,” said Gandhi.</p>
+<p>Experts and organizations like the CDC are working together to find ways to reduce the spread of these superbugs.</p>
+<p>“Professional organizations and hospitals are educating their doctors and staff about the antibiotic resistance problem and have created reviews of practice patterns to encourage the appropriate use of antibiotics,” said Schaffner.</p>
+<p>Gandhi added that organizations should institute procedures, such as “antimicrobial stewardship programs,” to ensure that providers do not prescribe antibiotics for non-bacterial infections and narrow antibiotics as soon as possible.</p>
+<p>The Pioneering Antimicrobial Subscriptions to End Upsurging Resistance (PASTEUR) Act aims to revitalize antibiotic and antifungal development by changing the way the federal government pays for novel antimicrobials.</p>
+<p>This act was reintroduced in Congress in February and is currently under review.</p>
+<p>The focus on reducing the spread of superbugs and developing new antibiotics is important.</p>
+<p>“You really cannot have all the benefits of modern medicine, even outside the realm of infectious diseases, without effective antibiotics. It all goes away,” Haley Ann Pritchard, MD, medical director of infection prevention and antimicrobial stewardship at Eskenazi Health Hospital, said in a statement.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/drug-resistant-infections-deaths-rising-cdc" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#6. 6 to 8 Cups of Tea Daily May Reduce Heart Disease Risk by 11%</h2>
+    <div class="article-meta">
+        📅 Oct 28, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/drinking-tea-daily-reduce-heart-disease-risk" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2066520601_facebook_1200x630-1200x628.jpg" alt="6 to 8 Cups of Tea Daily May Reduce Heart Disease Risk by 11%" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2066520601_facebook_1200x630-1200x628.jpg" alt="6 to 8 Cups of Tea Daily May Reduce Heart Disease Risk by 11%" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>People who regularly drink tea may have an 11% lower overall risk of vascular disease, which includes conditions such as stroke, heart disease, and peripheral artery disease. This is according to a study published on October 21 in the Journal of Internal Medicine.</p>
+<p>Both black tea and green tea may offer heart health benefits. However, the study shows an association rather than proving that drinking tea prevents cardiovascular disease.</p>
+<p>The lowest overall vascular risk was seen among tea drinkers who were also physically active and didn’t smoke.</p>
+<p>The study followed 485,934 people ages 30–79 from the China Kadoorie Biobank for an average of 9 years.</p>
+<p>The researchers found that regular tea drinkers had an 11% lower overall risk of vascular disease compared with those who did not regularly drink tea. They also observed a 37% lower risk of ischemic stroke and a 17% lower risk of heart attack.</p>
+<p>There was no clear link for hemorrhagic stroke or pulmonary heart disease.</p>
+<p>Among people who drank tea at least weekly, the lowest estimated risk was seen in those consuming approximately 6–8 cups per day. However, the findings do not establish this as a recommended daily intake.</p>
+<p>Amit Blumfield, MD, a cardiologist with Manhattan Cardiology in NYC who wasn’t involved in the study, told Healthline that it is important to remember this is observational data.</p>
+<p>Randomized controlled trials (RCTs) examining the effects of drinking black and green tea on lipids and blood pressure showed only modest, non-significant benefits.</p>
+<p>The study also had limitations, including self-reported tea consumption and the possibility that other dietary and lifestyle factors influenced the results.</p>
+<p>“Overall, tea seems to, maybe, have some cardiovascular benefits without a significant risk, so I favor tea consumption,” he said.</p>
+<p>Michelle Routhenstein, a preventive cardiology dietitian at Entirely Nourished who was not involved in the research, emphasized that the findings do not establish a cause-and-effect relationship between drinking tea and a lower risk of vascular disease.</p>
+<p>“Tea can be a helpful addition to a heart-healthy lifestyle, but it is not a substitute for addressing individual cardiovascular risk factors,” she said.</p>
+<p>The researchers also found that drinking “burning hot” tea increased the risk of vascular disease by 16%, consistent with previous research raising concerns about the consumption of very hot beverages.</p>
+<p>“I recommend enjoying your tea’s potential benefits by letting it cool to a comfortable sipping temperature before you drink it,” said Routhenstein.</p>
+<p>The study examined black, green, Oolong, and other tea types.</p>
+<p>The researchers found that black tea showed a more consistent association with a lower risk of vascular disease, which is contrary to some earlier research. However, they noted that these results don’t establish black tea as superior to green tea, and they don’t mean you should switch tea types.</p>
+<p>“Both black and green tea are great choices for your heart health, and neither is definitively better than the other,” said Routhenstein.</p>
+<p>“I recommend choosing whichever you enjoy and consuming it consistently, ideally without much added sugar,” Routhenstein noted.</p>
+<p>Blumfield also noted that adding sugar or non-sugar sweeteners may change the potential health effects of drinking tea, so the findings should not automatically be extended to sweetened tea beverages.</p>
+<p>Some older research suggests there may be additional health benefits to drinking both black and green tea. These benefits may include:</p>
+<p>Routhenstein said that tea may also support focus and alertness, improve hydration status, and potentially play a role in metabolic health.</p>
+<p>“Enjoying tea can be a simple way to incorporate beneficial plant compounds into your day,” she added.</p>
+<p>While drinking tea has been considered a health-promoting habit since ancient times, more research is needed to confirm its various health benefits.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/drinking-tea-daily-reduce-heart-disease-risk" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#7. Healthgrades Announces Top Hospitals for Specialty Care, Outpatient Procedures</h2>
+    <div class="article-meta">
+        📅 Oct 27, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/healthgrades-2027-top-hospitals-specialty-care-outpatient-procedures" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2158507157_facebook_1200x630-1200x628.jpg" alt="Healthgrades Announces Top Hospitals for Specialty Care, Outpatient Procedures" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2158507157_facebook_1200x630-1200x628.jpg" alt="Healthgrades Announces Top Hospitals for Specialty Care, Outpatient Procedures" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Hospital ratings have become an important resource for choosing where to receive care. They influence which doctors patients choose, how far they are willing to travel, and whether they seek care at a different facility.</p>
+<p>On October 27, Healthgrades announced the recipients of the 2027 Specialty Excellence Outpatient Awards and Specialty State Rankings.</p>
+<p>The annual awards recognize hospitals delivering outstanding patient outcomes in specialty care across the United States. Healthgrades is the leading platform used by Americans for finding a doctor or hospital.</p>
+<p>New research from Healthgrades highlights that hospital quality is increasingly a factor in healthcare decisions.</p>
+<p>Around 80% of patients report that when looking for a doctor, the quality of the hospital where they practice matters. Additionally, 7 in 10 patients (68%) say they’re more likely to seek care for a procedure or health condition from a doctor who works at a hospital with high quality ratings.</p>
+<p>What’s more, around 71% of patients say they would switch doctors to gain access to a higher-rated hospital.</p>
+<p>“Our specialty awards identify the nation’s top-performing hospitals across numerous medical specialties, helping consumers find high quality care tailored to their specific needs,” said Alana Biggers, MD, MPH, medical advisor at Healthgrades.</p>
+<p>Healthgrades is owned by RVO Health. By clicking on this link, we may receive a commission. Learn more.</p>
+<p>“Navigating the complex healthcare system can feel daunting, but taking a proactive stance to understand where to access superior care can enhance your healthcare journey and overall experience. The ability to make informed decisions about your health — and where to get care — is a cornerstone of self-advocacy, and we are proud to help make that information accessible to all patients.”</p>
+<p>Healthgrades identifies hospitals that deliver exceptional outcomes across common outpatient procedures and specialty conditions.</p>
+<p>Finding high quality care is important, particularly amid a growing gap between top-performing and one-star hospitals.</p>
+<p>According to Healthgrades, from 2023 to 2025, if all hospitals had performed at the five-star level from 2023 to 2025:</p>
+<p>“One of the biggest challenges is balancing increasing patient needs with the resources available to healthcare professionals,” Biggers said.</p>
+<p>“Hospitals face workforce shortages, growing administrative responsibilities, financial pressures, and increasing complexity in patient care. Physicians and other healthcare professionals need adequate time and support not only to evaluate and treat patients, but also to communicate results, coordinate follow-up care, and address concerns that arise between visits,” she continued.</p>
+<p>“When healthcare teams are adequately supported, they are better positioned to communicate effectively with patients, coordinate care, and address patients’ needs.”</p>
+<p>Biggers said that ensuring equal access to quality healthcare is challenging because of factors such as:</p>
+<p>Hospital closures and reduced services make access even more difficult. Biggers identified a few possible solutions, such as expanding outpatient care, building community partnerships, using telehealth when appropriate, and improving coordination among healthcare providers.</p>
+<p>“Ultimately, providing high quality care requires more than clinical expertise. It requires healthcare systems to invest in their workforce, strengthen care coordination, and create environments where healthcare professionals have the resources they need to provide safe, effective, and patient-centered care,” Biggers said.</p>
+<p>“Equally important, healthcare systems must ensure that patients have meaningful access to these services, regardless of where they live or their socioeconomic circumstances.”</p>
+<p>Healthgrades acknowledges hospitals that excel in three aspects of specialty care:</p>
+<p>Biggers said that outstanding hospitals recognize that high quality care extends beyond just treating an illness.</p>
+<p>“It involves listening to patients, understanding their individual circumstances, and ensuring they feel respected, informed, and involved in their healthcare decisions,” she said.</p>
+<p>Patients want to find a hospital that excels in the procedures or health conditions relevant to them.</p>
+<p>The recipients of the Specialty Excellence Awards are among the top 15% of hospitals specializing in these areas.</p>
+<p>Healthgrades evaluated patient outcomes at roughly 4,500 hospitals across 31 common procedures and conditions to reach their decisions.</p>
+<p>Among the list of Specialty Excellence Award recipients, Healthgrades also recognizes America’s 100 Best Hospitals for Specialty Care for 11 specialty areas andAmerica’s 50 Best Hospitals for Specialty Care for four specialty areas.</p>
+<p>“An outstanding hospital prioritizes both patient care and the people delivering that care,” Biggers told Healthline.</p>
+<p>“While clinical outcomes, patient safety, and access to evidence-based treatments are essential measures of quality, I believe hospitals must also invest in workforce development and support. This means ensuring physicians, nurses, and other healthcare professionals have appropriate staffing levels, adequate clinical and administrative support, and opportunities for continued professional development,” she continued.</p>
+<p>Healthgrades awards U.S. hospitals that excel at Outpatient Orthopedic Surgery, Outpatient Joint Replacement, andOutpatient Prostate Care.</p>
+<p>Outpatient care is one of the fastest-growing areas of healthcare. The number of orthopedic procedures performed in an outpatient environment has grown exponentially in recent years.</p>
+<p>From 2020 to 2025, outpatient hip replacement procedures grew by 81%, while inpatient procedures dropped by 75%. Outpatient knee replacements increased by 71% while inpatient volumes decreased by 70%.</p>
+<p>“I believe several factors are contributing to the growing demand for outpatient care, including advances in medical technology, a greater emphasis on preventive care, and the increasing need to manage chronic medical conditions,” Biggers said.</p>
+<p>“Many services and procedures that previously required hospitalization can now be safely performed in outpatient settings. Patients also appreciate the convenience of receiving care closer to home and avoiding unnecessary hospital stays,” she added.</p>
+<p>To meet the increasing demand for outpatient procedures, Biggers cautioned that healthcare systems must ensure that these services are adequately staffed and supported.</p>
+<p>“Effective communication and coordination between outpatient providers, specialists, and hospitals are essential to maintaining continuity and quality of care,” she said.</p>
+<p>State Rankings identify the top three or five hospitals in eligible states across 19 key specialty areas.</p>
+<p>Healthgrades is owned by RVO Health. By clicking on this link, we may receive a commission. Learn more.</p>
+<p>The rankings are based on clinical performance and build on the 2027 Healthgrades Specialty Excellence Awards Methodology.</p>
+<p>State-level specialty care rankings help consumers find outstanding local hospitals for their condition or procedure.</p>
+<p>The analysis used Medicare inpatient data from the Centers for Medicare & Medicaid Services (CMS) from 2023 to 2025, and assessed patient outcomes across 31 conditions and procedures.</p>
+<p>These outcomes served as the foundation for determining Specialty Excellence Awards and state hospital rankings.</p>
+<p>With consumer-facing awards and ratings influencing healthcare decisions, transparency about their methods and limitations remains essential.</p>
+<p>Ratings can help patients ask better questions and compare options, but they should complement — not replace — clinical guidance and informed decision making.</p>
+<p>The methodologies for each of the specialty awards can be found on the following pages:</p>
+<p>For more information, Healthgrades’ Specialty Excellence Patient Advocate Center provides access to the information you need to make informed decisions about your care. This resource includes an overview of how Healthgrades picks award recipients, plus a list of the top U.S. hospitals for specialty care.</p>
+<p>To be eligible for a Specialty Excellence Award, hospitals must receive a rating in the required procedures and conditions used to determine the award. Some awards are based on a single procedure, while others are based on a grouping of procedures. To learn more about Healthgrades’ ratings and awards determination process, see the 2027 Specialty Excellence Awards and Ratings Methodology.</p>
+<p>Healthgrades is owned by RVO Health. By clicking on this link, we may receive a commission. Learn more.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/healthgrades-2027-top-hospitals-specialty-care-outpatient-procedures" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#8. This Is How Fast You Should Walk to Help Lower Your Risk of Death</h2>
+    <div class="article-meta">
+        📅 Oct 26, 2026 &nbsp;|&nbsp; Category: <strong>Technology</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/walking-speed-daily-steps-may-predict-death-risk" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2242817371_facebook_1200x630-1200x628.jpg" alt="This Is How Fast You Should Walk to Help Lower Your Risk of Death" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2242817371_facebook_1200x630-1200x628.jpg" alt="This Is How Fast You Should Walk to Help Lower Your Risk of Death" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>New research shows that how fast you walk, whether measured in a clinical test or through daily activity, can help predict your risk of dying from any cause.</p>
+<p>The study compared two ways of measuring walking: a short walking speed test conducted in a clinic and the step rate people take in their everyday lives, measured with a wrist-worn device.</p>
+<p>Both measures were linked to mortality risk and showed similar ability to predict it.</p>
+<p>The findings, published on October 23 in JAMA Network Open, could help doctors and researchers choose the best method for assessing health risks in different settings.</p>
+<p>The study was part of the Whitehall II accelerometer substudy in the United Kingdom.</p>
+<p>It included 4,067 participants, mostly males, with an average age of about 69 years. About one-third of the subjects were female.</p>
+<p>The researchers collected data from January 2012 to December 2013 and followed up through August 2024.</p>
+<p>To measure clinical walking speed, participants completed a standard walking test. They walked a marked 2.44-meter course at their usual pace. The test was repeated three times, and the average speed in meters per second was used for analysis. Participants who normally used a cane were allowed to use it during the test.</p>
+<p>For free-living walking measurements, participants wore a wrist-worn GENEActiv accelerometer for 9 consecutive days. This device recorded movement at a high frequency and used special software to detect walking episodes and count steps.</p>
+<p>From this data, two key measures of walking cadence were calculated: the median walking cadence (the middle value of steps per minute during walking periods) and the 95th-percentile walking cadence (a higher step rate indicating brisk walking). The study also calculated the average number of daily steps.</p>
+<p>The researchers additionally gathered information on factors known to affect mortality, such as:</p>
+<p>National death records were used to identify deaths during the follow-up period.</p>
+<p>Statistical methods were then used to estimate the risk of death associated with walking speed and cadence while accounting for other risk factors.</p>
+<p>The models were adjusted step-by-step: starting with no adjustments, then adding sociodemographic factors, behavioral factors, and finally health-related factors.</p>
+<p>The ability of walking measures to predict mortality was assessed using a statistical measure.</p>
+<p>The study also examined differences between males and females.</p>
+<p>The researchers additionally conducted analyses to test how well the results held up when they excluded early deaths, looked at subgroups by age and health status, and used different definitions of walking cadence.</p>
+<p>During a median follow-up of nearly 12 years, 739 participants died.</p>
+<p>The average clinical walking speed of participants was 1.2 meters per second. The median walking cadence during daily life was about 75 steps per minute, and the 95th percentile walking cadence was about 112 steps per minute.</p>
+<p>The study found only a weak correlation between clinical walking speed and free-living walking cadence, meaning the two measures do not strongly reflect the same walking behavior. However, both measures were independently associated with a lower risk of death.</p>
+<p>After adjusting for age, sex, lifestyle, and health factors, for every standard increase in clinical walking speed, the risk of death was 23% lower.</p>
+<p>Similarly, higher median and 95th-percentile walking cadences were associated with 17% and 18% lower risks of death, respectively.</p>
+<p>When examining how well these walking measures predicted mortality, each on its own showed modest predictive ability.</p>
+<p>Adding clinical walking speed to a model with other known risk factors slightly improved mortality prediction, while adding free-living walking cadence also improved prediction, albeit to a similar degree to that of clinical walking speed.</p>
+<p>Combining clinical walking speed with free-living walking parameters provided a small boost in predictive ability, but the effect was not significant after accounting for detailed health factors.</p>
+<p>The study also found that walking speed and cadence had similar predictive power for both men and women, although the overall prediction models performed slightly better for women.</p>
+<p>Several sensitivity analyses supported the main findings. Results were consistent when excluding early deaths, focusing on healthier or older participants, and using different ways to define walking cadence.</p>
+<p>Overall, this study suggests that clinical walking speed tests and free-living walking cadence measurements from wrist-worn devices are both useful in predicting all-cause mortality risk. They provide similar information but reflect different aspects of walking behavior.</p>
+<p>The choice between methods may depend on the purpose of the assessment, available resources, and the context in which the measurement is taken.</p>
+<p>Neha Sabharwal, PT, DPT, a physical therapist and director of rehabilitation specializing in geriatric mobility and functional decline at Vintage Faire Nursing and Rehabilitation Center in Modesto, CA, said that walking speed helps predict longevity because it’s an indicator of someone’s overall health.</p>
+<p>“Walking is something most of us do without thinking about it, but it requires several body systems to work together,” she told Healthline. “Your heart and lungs have to keep up, your muscles need to produce enough force, and your brain has to coordinate each step while keeping you balanced.”</p>
+<p>Sabharwal, who wasn’t involved in the study, said that in her work, she pays attention to when someone starts walking more slowly than before.</p>
+<p>“It is easy to dismiss that change as part of getting older, but there may be something else going on,” she said. This could include muscle weakness, pain, reduced endurance, balance problems, or underlying medical conditions.</p>
+<p>According to Sabharwal, the current study is valuable because it suggests that useful information about people’s movement can be obtained outside a clinical setting.</p>
+<p>However, she cautioned against misinterpreting the findings to mean that simply walking faster will make you live longer.</p>
+<p>“People who naturally walk faster may already have better underlying health,” said Sabharwal.</p>
+<p>“I would be less concerned about whether someone walks faster than their neighbor and more interested in whether they are walking slower than they did six months ago,” she said.</p>
+<p>Theodore Strange, MD, chairman of medicine at Northwell Staten Island University Hospital and senior vice president of the Metro Market Region at Northwell Health, shared some insights for those who may notice their walking speed has declined. Strange wasn’t involved in the study.</p>
+<p>“I mean, if it’s slowing down because a week or two ago, you were walking up a flight of steps with no problem, and now, you’re having some shortness of breath, I think it should be evaluated,” he told Healthline.</p>
+<p>Strange added that if you’re experiencing aches or pains that weren’t there before, you should consult a healthcare professional, as they can make exercise more difficult.</p>
+<p>It’s also essential to manage any chronic diseases that you have so that you can exercise as well as possible within the constraints of your condition, he said.</p>
+<p>“And I think slow and steady wins the race here,” said Strange. He suggests monitoring your walking with a device like a pedometer and progressively increasing your steps.</p>
+<p>“Everybody talks about 10,000 steps a day. I think the most recent studies show probably 7,000 to 8,000 is adequate,” he said. You can start where you are and work your way up gradually.</p>
+<p>Strange further noted that physical therapy can sometimes be helpful if you have issues with gait mechanics, balance, or strength. Additionally, you might benefit from exercise that is tailored to your condition, for example, if you’ve had a stroke.</p>
+<p>Finally, Strange advised stretching before and after exercise to keep your muscles moving.</p>
+<p>“I go back to adequate nutrition and hydration being important,” he said. You want to make sure you are adequately supporting your body’s ability to exercise, said Strange.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/walking-speed-daily-steps-may-predict-death-risk" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#9. Hormone Therapy May Boost Weight Loss on Wegovy, But Not as Much on Zepbound</h2>
+    <div class="article-meta">
+        📅 Oct 26, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/hormone-therapy-may-boost-weight-loss-wegovy-not-as-much-zepbound" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2189800913_facebook_1200x630-1200x628.jpg" alt="Hormone Therapy May Boost Weight Loss on Wegovy, But Not as Much on Zepbound" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2189800913_facebook_1200x630-1200x628.jpg" alt="Hormone Therapy May Boost Weight Loss on Wegovy, But Not as Much on Zepbound" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Females using menopause hormone therapy (MHT) alongside GLP-1 medications such as Ozempic or Wegovy may experience greater weight loss, according to a study presented at the 2026 Annual Meeting of the Menopause Society.</p>
+<p>Weight gain is a common concern among middle-aged women. While much of this is associated with aging, hormonal changes during menopause can also contribute to changes in body fat and its distribution.</p>
+<p>GLP-1 medications have been shown to be effective for weight loss. However, the results may vary by sex and reproductive stage.</p>
+<p>For example, studies have found that women and adults under age 55 may experience greater weight loss with these medications.</p>
+<p>A previous small observational study in postmenopausal women found that using MHT alongside semaglutide, the active ingredient in Ozempic and Wegovy, was associated with greater weight loss.</p>
+<p>However, whether hormone therapy influences weight loss outcomes with different GLP-1 medications remains unclear.</p>
+<p>To investigate this question, researchers compared weight loss in middle-aged women receiving either semaglutide or tirzepatide, with or without MHT. The findings have not yet been published in a peer-reviewed journal.</p>
+<p>The study included 3,855 women with an average age of 57 and an average body mass index (BMI) of 36 kg/m2.</p>
+<p>The semaglutide cohort included 2,379 individuals, while the tirzepatide cohort included 1,476 individuals.</p>
+<p>The average follow-up in the semaglutide cohort, both with and without MHT, was 26 months. The average follow-up in the tirzepatide group was 17 months for those using MHT and 16 months for those not using it.</p>
+<p>The researchers found that in the semaglutide cohort, those using MHT alongside the GLP-1 medication had significantly greater weight loss at 9 months than those not using MHT.</p>
+<p>These differences were sustained at 12 and 15 months and at the final follow-up. Those using MHT were also more likely to reach up to a 30% total body weight loss than those not using it.</p>
+<p>In the tirzepatide cohort, those using MHT had a modestly greater weight loss at 3 months and were more likely to achieve more than 5% total body weight loss by the final follow-up. However, no significant difference in weight loss was observed at later time points.</p>
+<p>These findings suggest that MHT use may be associated with greater weight loss among middle-aged women taking semaglutide. However, the researchers did not observe a sustained, statistically significant difference in weight loss among those taking tirzepatide.</p>
+<p>Betul Hatipoglu, MD, Director of the Diabetes and Obesity Center at the University Hospitals Cleveland Medical Center, who was not involved in the study, told Healthline that the findings are encouraging.</p>
+<p>However, she also cautioned that people should be careful not to interpret them as evidence that hormone therapy should be added to GLP-1 treatment specifically to enhance weight loss.</p>
+<p>“This is an association, and the study provides an opportunity to discuss how menopause, aging, changes in body composition, and metabolic health can be present,” she said.</p>
+<p>It is important to keep in mind that the Food and Drug Administration (FDA) has approved certain hormone therapy medications to treat menopause symptoms such as hot flashes, night sweats, and vaginal dryness. However, these medications are not FDA-approved for weight loss or obesity management.</p>
+<p>The study authors noted that larger studies are needed to confirm their observations and to inform individualized strategies for middle-aged females.</p>
+<p>Sherry Ross, MD, board certified OB-GYN and Women’s Health Expert at Providence Saint John’s Health Center in Santa Monica, CA, who was not involved in the study, noted that weight gain is one of the most common concerns she hears from women during menopause. Beyond affecting self-esteem and quality of life, excess abdominal fat can increase the risk of type 2 diabetes and heart disease.</p>
+<p>“Finding effective, sustainable ways to manage weight is important for women’s long-term health and healthy aging,” she said.</p>
+<p>“I would like to see prospective, randomized studies examining GLP-1 medications with and without hormone therapy to determine whether hormone therapy directly improves weight loss and helps women maintain it over time. In the meantime, treatment decisions should be individualized and guided by a healthcare professional.”</p>
+<p>Ross advised that the decision should be based on your individual symptoms, health history, and treatment goals.</p>
+<p>“Hormone therapy can significantly improve disruptive menopausal symptoms, including hot flashes, sleep disturbances, and mood changes. By helping women feel better and more energetic, it may also make it easier to exercise and manage their weight,” she said.</p>
+<p>Hatipoglu noted that GLP-1-based medications, on the other hand, are effective treatments for obesity and can improve important aspects of metabolic health. Their use should be based on an individual’s weight-related health risks, medical history, and treatment goals.</p>
+<p>“For a woman who has both bothersome menopausal symptoms and obesity, it may be entirely appropriate to consider both treatments. But I would not recommend starting hormone therapy solely to improve the weight-loss response to a GLP-1 medication based on the evidence currently available,” she said.</p>
+<p>“It is also important to remember that successful weight management during and after menopause is about more than the number on the scale. Preserving muscle mass, maintaining bone health, improving metabolic health, and supporting long-term physical function are equally important.”</p>
+<p>You should speak with your healthcare professional about the risks and benefits of all treatment options.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/hormone-therapy-may-boost-weight-loss-wegovy-not-as-much-zepbound" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#10. How This Former Weightlifter Lost 80 Pounds After GLP-1s Stopped Working</h2>
+    <div class="article-meta">
+        📅 Oct 25, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/former-weightlifter-weight-loss-after-glp1" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/DeconDana_facebook_1200x630-5-1200x628.jpg" alt="How This Former Weightlifter Lost 80 Pounds After GLP-1s Stopped Working" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/DeconDana_facebook_1200x630-5-1200x628.jpg" alt="How This Former Weightlifter Lost 80 Pounds After GLP-1s Stopped Working" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>For years, Dana Bichler was a competitive weightlifter. He felt fit and strong competing at 200 to 210 pounds. But wear and tear on his body and aging eventually pushed him to step away from weightlifting. Without the training, he began to gain weight slowly and steadily.</p>
+<p>“I tried running, and a few other things, and the weight just crept up,” he told Healthline.</p>
+<p>Dieting allowed him to lose about 50 pounds, but he would then regain it. At his heaviest, he weighed close to 300 pounds, which inspired him to visit a weight-loss clinic, where he followed a plan centered on the clinic’s foods.</p>
+<p>“It’s a life of deprivation,” Bichler said. “You just can’t live like it.”</p>
+<p>About five years ago, he tried a GLP-1 medication and two others a few years later. Each helped him lose weight initially but then stopped working.</p>
+<p>“There was really no long-term positive effects or benefits that I saw,” he said.</p>
+<p>However, he still takes Mounjaro for blood sugar control because he is prediabetic.</p>
+<p>A few years ago, he was diagnosed with fatty liver disease. His condition was tied to obesity and caused scarring on his liver.</p>
+<p>Bichler understood the seriousness of the condition as his two younger sisters and his oldest brother also had fatty liver disease. His brother and youngest sister developed cirrhosis, and his brother died after the disease affected other parts of his body.</p>
+<p>“I had to do something,” he said. “What I was doing was not working.”</p>
+<p>From his home in St. Cloud, Minnesota, Bichler traveled to the University of Minnesota to see a hepatologist, who referred him to a gastroenterologist who had worked with Boston Scientific on the instruments used to perform endoscopic sleeve gastroplasty (ESG).</p>
+<p>ESG is a minimally invasive weight loss procedure performed using an FDA-authorized endoscopic suturing system, such as one offered through Boston Scientific’s Endura Weight Loss Solutions.</p>
+<p>During ESG, a doctor passes an endoscope through the mouth and uses sutures to fold the stomach into a narrower sleeve. No portion of the stomach is removed, and there are no incisions. The smaller stomach limits how much a person can eat at once.</p>
+<p>“Patients typically go home the same day and can return to routine daily activities within two to three days,” Brian Dunkin, MD, chief medical officer at Boston Scientific, told Healthline. “For the right person, that provides another less-invasive option to consider with their healthcare professional.”</p>
+<p>While ESG may be a good option for some people who don’t achieve weight loss goals with GLP-1 medications, can’t tolerate them, or don’t want to stay on medication long term, Dunkin said he doesn’t think of it as ESG versus GLP-1 drugs.</p>
+<p>“One of the best things GLP-1 medications have done is get more people talking to their doctors about obesity and recognizing it as a chronic disease that deserves treatment,” he said.</p>
+<p>Each approach has different benefits, risks, and side effects.</p>
+<p>“The goal is finding the right treatment, or combination of treatments, for the right patient at the right time,” said Dunkin.</p>
+<p>ESG is indicated for adults with obesity with a BMI between 30 and 50, but Dunkin said BMI is only part of the conversation. ESG may be an option for people who aren’t getting the weight loss results they want, who don’t want to stay on weight loss medication long term, or for whom bariatric surgery may not be appropriate or desired, he added.</p>
+<p>“Obesity is a chronic disease that requires long-term care,” said Dunkin. “ESG is one part of that care, which is why I believe so strongly in a multidisciplinary approach. The goal is to look at the whole person and find a care plan they can sustain over time.”</p>
+<p>In March 2025, Bichler decided ESG was a good fit for him and received the procedure at Boston Scientific. At the time, he was 67 years old and on Medicare, which pre-approved the procedure.</p>
+<p>“I just felt comfortable with it not being invasive, and I really needed to deal with [my weight], so I did,” he said.</p>
+<p>When Bichler underwent ESG he weighed somewhere in the 260s. Today, he weighs 178 pounds.</p>
+<p>While the procedure went smoothly, he said the following month was difficult. Because bread, pasta, rice, and carbonated drinks were off the table, he had to consume clear liquids, then slowly moved to other liquids, and eventually cream soups.</p>
+<p>“I found that extremely difficult,” he said.</p>
+<p>What surprised him most was depression. Looking back, he calls it a perfect storm. Working with his weight loss doctor, he had stopped taking his antidepressant about two weeks before the procedure. After surgery, his eating habits changed dramatically, disrupting the social life he’d built around food.</p>
+<p>“I was in a pretty deep funk for a while,” he said. “I really was.”</p>
+<p>He restarted his antidepressant, and over time, he adjusted to a new way of eating.</p>
+<p>“I’ve discovered I like cream soup,” he said. “I still have it for meals.”</p>
+<p>Although he’s lost more than 80 pounds, Bichler said the bigger change is how good he feels. He exercises four to five days a week and has more energy and moves more easily than he has in years.</p>
+<p>“I haven’t felt this good in 30 years,” Bichler said. “I’m not kidding you.”</p>
+<p>He’s able to enjoy things he loves like working on the farm he and his wife own. At the farm, he hunts ducks, turkeys, pheasants, and small game, and runs a trapline, all activities his weight had made nearly impossible for a long time.</p>
+<p>“It used to be really hard for me to do because of the physicality of doing some of these things,” he said.</p>
+<p>Although he retired from his profession, Bichler said he’s busier than ever. He’s a protodeacon in the Eastern Orthodox Church and also serves as a chaplain for his local police department, a role that has him climbing in and out of squad cars and up and down steps.</p>
+<p>“Before I’d be sucking air trying to keep up,” he said.</p>
+<p>Most meaningful of all is that he has more energy to give to his family.</p>
+<p>“I have a grandson that I can actually do things and be active with now,” Bichler said. “It’s like starting all over. I just feel like a new person.”</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/former-weightlifter-weight-loss-after-glp1" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#11. Getting More Physical Activity May Help With Your Perimenopause Symptoms</h2>
+    <div class="article-meta">
+        📅 Oct 24, 2026 &nbsp;|&nbsp; Category: <strong>Technology</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/higher-physical-activity-improves-perimenopause-symptoms" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2297912851_facebook_1200x630-1200x628.jpg" alt="Getting More Physical Activity May Help With Your Perimenopause Symptoms" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2297912851_facebook_1200x630-1200x628.jpg" alt="Getting More Physical Activity May Help With Your Perimenopause Symptoms" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>A new study found that exercising more frequently may help alleviate perimenopause symptoms like hot flashes, anxiety, and urinary issues.</p>
+<p>The study results were recently presented at The Menopause Society’s 2026 Annual Conference.</p>
+<p>Perimenopause is the transitional period leading up to menopause.</p>
+<p>Due to hormonal changes that mark the end of a person’s reproductive years, symptoms like hot flashes, mood swings, brain fog, insomnia, and urinary incontinence are common.</p>
+<p>Past studies show that lifestyle modifications, such as eating a healthy diet, managing stress, and getting enough physical activity, can help reduce some perimenopause symptoms.</p>
+<p>“Physical activity is low cost, accessible, and already known to benefit sleep, mood, and heart and bone health — all areas that matter a great deal during perimenopause,” said study lead and co-author Liudmila Zhaunova, PhD, director of science at Flo Health — the developer of a women’s health tracking app, which was used to collect health data for this study. “But when we looked at the research, there was surprisingly little evidence specific to perimenopause.”</p>
+<p>“Hormone therapy isn’t suitable or desired for everyone, so women deserve a broader set of evidence-based options,” Zhaunova told Healthline. “The more we understand about accessible, lifestyle-based approaches, the better equipped women and their healthcare providers are to build a plan that works for them.”</p>
+<p>Study researchers recruited more than 1,800 women from around the globe who were using the Flo app.</p>
+<p>Study participants were asked to complete online surveys about their physical activity, from not being physically active to exercising more than 5 days a week.</p>
+<p>Participants were also asked to report on their perimenopause symptoms in three categories — somatic (body-based issues like hot flashes), psychological (mental health issues like mood changes), and urogenital (issues regarding the urinary or vaginal areas). Researchers rated the severity of these symptoms using the Menopause Rating Scale (MRS).</p>
+<p>The researchers found that higher rates of physical activity were associated with fewer perimenopausal symptoms across all three categories.</p>
+<p>“Perimenopause symptoms are wide-ranging, and women often experience several at once,” Zhaunova said. “Seeing a lower symptom burden across all three domains suggests that being more active may be relevant to women’s overall experience, not just one symptom.”</p>
+<p>Additionally, the scientists discovered that the greatest exercise benefit was observed in the reduction of perimenopausal psychological symptoms.</p>
+<p>“Psychological symptoms, such as low mood, irritability, anxiety, and exhaustion, are among the most disruptive parts of perimenopause, and they’re often overlooked or not recognized as related to this life stage,” Zhaunova explained.</p>
+<p>“Our findings suggest that physical activity may matter most for mood and anxiety-related symptoms,” she continued.</p>
+<p>“This could help women and clinicians have more informed conversations about how to support mental well-being during perimenopause. That said, women with more symptoms may find it harder to exercise, so we need further research to understand the direction of the relationship.”</p>
+<p>Sherry Ross, MD, a board certified OB-GYN and Women’s Health Expert at Providence Saint John’s Health Center in Santa Monica, CA, said that regular exercise could potentially help relieve perimenopause symptoms like hot flashes and mood changes. Ross wasn’t involved in this study, but noted other benefits of exercising during this life stage:</p>
+<p>“Exercise releases endorphins, improves blood vessel health, lowers inflammation, helps reset circadian rhythm, and improves the body’s internal cooling system,” Ross told Healthline. “Collectively, these changes ease anxiety, irritability, mood changes, sleep, and fatigue.”</p>
+<p>“There were mixed reviews on how exercise benefits hot flashes, but exercise does help with weight control, which may benefit hot flashes,” she said. “Strengthening the pelvic floor and core may help with the urinary symptoms women many experience in perimenopause.”</p>
+<p>Prudence Hall, MD, an OB-GYN in private practice in Santa Monica, CA, and author of “Radiant Again & Forever,” said that building a sustainable exercise routine requires consistency, joy, and community. Hall wasn’t involved in the study, but shared some exercise tips for perimenopausal women.</p>
+<p>“Too often in midlife, previously stable women suddenly plummet into deep depression and anxiety, only to be prescribed multiple medications with debilitating side effects that never address the underlying biology,” Hall said.</p>
+<p>“While hormone optimization remains essential to correct these endocrine deficiencies, exercise serves as a powerful, non-pharmaceutical therapy that directly targets the true root causes by revitalizing our cellular health and restoring overall vitality.”</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/higher-physical-activity-improves-perimenopause-symptoms" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#12. Letter from the Editor-in-Chief: The Good and the Hard of Life on GLP-1s</h2>
+    <div class="article-meta">
+        📅 Oct 23, 2026 &nbsp;|&nbsp; Category: <strong>Business</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/glp-1-side-effects-vs-benefits-real-patient-experiences" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2273515587_facebook_1200x630-1200x628.jpg" alt="Letter from the Editor-in-Chief: The Good and the Hard of Life on GLP-1s" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2273515587_facebook_1200x630-1200x628.jpg" alt="Letter from the Editor-in-Chief: The Good and the Hard of Life on GLP-1s" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>“Years of diets that worked for a couple of months, then gave all the weight back and more. Now the food noise has gone quiet,” a GLP-1 user shared.</p>
+<p>In June, our brilliant News team published a piece about actor Mayim Bialik and her challenging experience with GLP-1 side effects. It did well, like many of the celebrity + health condition + human-interest angle features we create tend to do with our audience (that’s you all reading this!). Not a massive viral hit by any measure, but a strong performer on the traffic front.</p>
+<p>Jump forward nearly 4 months; our equally brilliant social media team posts the piece on Facebook, leading with one of Bialik’s quotes from the article: “GLP-1s have helped people in serious need. Of that I am certain. But nobody talks much about what happens when it goes wrong.”</p>
+<p>The fuse was lit. Nearly 12k likes, 1k reposts, and 3.5k comments later, the team had their most engaged post of the year by some margin. The irony is not lost on me that Bialik’s quote, about how rarely people talk about side effects, sparked such a deep conversation about that very thing.</p>
+<p>GLP-1s are a big topic for Healthline. They drive traffic, they drive revenue, and they offer a rich seam of human-centric storytelling for our teams. Even so, no one predicted the post would catch fire the way it did. Our social team’s read is that a few things stacked up: Mayim Bialik is a name our Facebook audience knows, the topic is one where nearly everyone has a stake, and a busy thread tends to get shown to more people, who then add more comments. That’s the hypothesis. What we’ve consistently seen is that posts that lead with a quote get more people talking than those that lead with a headline. You may have noticed this article takes the same approach.</p>
+<p>We also know that the comment sections on social media aren’t always the most hospitable of environments, particularly in the health space. What stood out about the lion’s share of the comments we read was how constructive the discourse was. People were leading with deeply personal and often moving perspectives about the life changing impact (for good and bad) of GLP-1s. In turn, they were met with equally balanced and thoughtful responses.</p>
+<p>Many of the comments expanded on Bialik’s experience, detailing long and difficult battles with a range of side effects. But plenty told the other side of the story: years of failed diets and struggles with chronic conditions leading to despondency, side effects that went on to ease with time, and life changing results that were ultimately worth the cost.</p>
+<p>The line that opened this piece could have come from any of those commenters. It didn’t. It came from Kitty Hough, who is 75 and lives in London. Eagle-eyed readers will have spotted that she has the same surname as me – that’s because she’s my mom. She’s one of two people closer to the Healthline home who spoke to me for this piece and whose stories echo the Facebook post thread, with the good and the hard bits side by side.</p>
+<p>Kitty was a hockey player and distance runner as a girl, the kind who could eat what she liked without it showing. Then came children, and a weight that crept up year after year, with decades of diets that “worked for a couple of months only to be back to my former weight and then some.” In late 2024, after a lot of research, she decided to try tirzepatide.</p>
+<p>Since then, Kitty has lost 56 pounds. She says her joints hurt less, which she puts down to reduced inflammation. She is more mobile. The constant chatter about food has faded. She thinks harder before she eats now.</p>
+<p>“I am a strong believer that obesity is a disease and in my case certainly not the result of overindulgence or laziness,” she says. “GLP-1s have greatly improved my health and self-esteem. After years of struggling with my weight, I have finally found a way to solve the problem.”</p>
+<p>Kitty will also tell you what it cost. Nausea. Constipation. Sulfur-tasting burps and rough nights of indigestion. Initial hair loss that has since grown back, and loose skin. Muscle loss. And she misses some of the true joy of cooking and eating food.</p>
+<p>But despite bumps in her journey, Kitty remains convinced that the benefits of GLP-1s for her life and health outweigh any drawbacks she’s experienced. “I am conscious that I will probably be on this drug for a long time if not for life. It is truly a miracle drug.”</p>
+<p>I also spoke to Ann Marie Maguire, AGNP-C, RN, TCTCN, a nurse practitioner specializing in transplantation and cellular therapy, the sister of Healthline’s Chief Business Officer Christine Macguire, and someone who has lost over 50lbs since starting GLP-1s in 2022.</p>
+<p>“I struggled with my weight since my teens and always believed I should be able to manage it on my own. But in my 30s, my knees were hurting just getting out of bed or walking to dinner. I realized how much my weight was affecting my quality of life. Starting a GLP-1 in 2022, alongside healthier eating and exercise, made a tremendous difference. My only regret is not starting sooner,” said Ann Marie.</p>
+<p>As a healthcare professional, Ann Marie also identified cost as a major factor that can’t be ignored regarding GLP-1s and their impact.</p>
+<p>“There’s understandable debate about the long-term use and cost of these medications,” she says. “But we also need to consider the health and financial burden of obesity, including cardiovascular complications, hospitalizations, surgeries and ongoing medications. The cost conversation should account for the potential benefits of preventing or reducing those complications.”</p>
+<p>Ann Marie points to a frustration many patients will recognize: reaching a healthier weight can become the reason coverage gets cut off. “We don’t automatically stop blood pressure medication because a patient’s readings improve,” she says. The treatment may be what’s keeping the condition controlled. Obesity, she argues, deserves the same approach. “Reaching a goal weight can mean treatment is working, and decisions about continuing it should reflect the patient’s ongoing needs, benefits and side effects.”</p>
+<p>It’s important to note that this article looks at the experiences of only a handful of people out of the millions who now take GLP-1s. Like all drugs, these medications are not right for everyone. Side effects are common; some of them can be serious, and both the long-term impact and what happens when people stop are still being worked out. Ultimately, your care team, with knowledge of your medical history, is a far better guide than a comment thread.</p>
+<p>Yet the evidence now reaches well beyond the scales: large trials have linked semaglutide to fewer heart attacks and strokes in people with heart disease and slower kidney decline in people with diabetes and kidney disease, and tirzepatide became the first FDA-approved drug for moderate to severe sleep apnea in adults with obesity.</p>
+<p>Stories like Kitty’s, Ann Marie’s, Mayim Bialik’s, and those of the 3.5k commenters on the Facebook post aren’t proof of what will happen to you one way or another. But for a lot of people, my mom included, these drugs have changed what an ordinary day looks like, and in many cases changed what their future can look like.</p>
+<p>One of the most significant drug developments of the century so far? Hard to argue with.</p>
+<p>Robin Hough is the Editor-in-Chief of Healthline, and in addition to this regular Letter from the Editor column, he can be found every other Wednesday in our Healthline Wellness Wire newsletter.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/glp-1-side-effects-vs-benefits-real-patient-experiences" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#14. ADHD Medications May Help Ease Menopausal Brain Fog</h2>
+    <div class="article-meta">
+        📅 Oct 23, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/adhd-medications-may-help-ease-menopausal-brain-fog" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2288540552_facebook_1200x630-1200x628.jpg" alt="ADHD Medications May Help Ease Menopausal Brain Fog" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2288540552_facebook_1200x630-1200x628.jpg" alt="ADHD Medications May Help Ease Menopausal Brain Fog" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Medications commonly used to treat attention-deficit/hyperactivity disorder (ADHD) may help reduce certain symptoms of menopausal brain fog, according to a review presented at the 2026 Annual Meeting of the Menopause Society. The findings have not yet been published in a peer-reviewed journal.</p>
+<p>The research suggests that both lisdexamfetamine (Vyvanse) and atomoxetine (Strattera) may improve self-reported executive function in perimenopausal and postmenopausal people. However, they showed little to no effect on objective cognitive tests.</p>
+<p>While this scoping review showed promising results, experts caution that it may be too early to begin recommending these medications to females experiencing menopause.</p>
+<p>Sara Vaughn, MD, Chief Medical Officer at Clair Health, who wasn’t involved in the study, told Healthline that these findings are interesting and hypothesis-generating, but they do not yet establish ADHD medications as a treatment for menopausal brain fog.</p>
+<p>Many middle-aged females report experiencing forgetfulness, slow thinking, reduced concentration, and difficulty finding words. This is often referred to as “brain fog,” and is a common occurrence during various stages of menopause.</p>
+<p>These symptoms of brain fog also mirror the symptoms of ADHD.</p>
+<p>Brain fog may be due to declining or fluctuating levels of estrogen during perimenopause, which affects dopamine and norepinephrine signaling in the prefrontal cortex and the hippocampus. This can impact memory, focus, and executive functioning.</p>
+<p>Despite how disruptive these symptoms can be to quality of life, there is currently no medication approved by the Food and Drug Administration (FDA) to manage them. This often leaves clinicians in a position of trying to differentiate between brain fog from menopause and undiagnosed ADHD.</p>
+<p>The review analyzed five studies involving females ages 45–60 with their last menstrual period within the past 10 years. The studies all focused on how ADHD medications affect outcome measures of cognition and ADHD severity.</p>
+<p>The researchers found that with lisdexamfetamine, scores on the Brown Attention Deficit Disorder Scale (BADDS), a self-report rating scale that measures ADHD symptoms, dropped from 35.7 to 21.2, compared with 29.8 with a placebo. With atomoxetine, BADDS scores decreased from 38.6 to 25.5, compared with 30.1 with a placebo.</p>
+<p>There was no significant benefit observed on objective cognitive tests (ex., memory and processing speed).</p>
+<p>These findings suggest that certain ADHD medications may improve perceived cognitive symptoms during menopause, although benefits were not demonstrated on objective cognitive tests.</p>
+<p>Jennifer Tat, a medical student at the University of Tennessee Health Sciences Center and lead author of the study, noted, “In the population data, symptom severity, not a formal ADHD diagnosis, predicted menopausal burden. Many women were never diagnosed, so relying on a chart diagnosis misses the women most at risk.”</p>
+<p>“We have evidence that the menopause transition is associated with measurable brain changes,” said Vaughn. “But no specific brain signature of menopausal brain fog has been established. To study it rigorously, we first need to define what the term means and measure it consistently.”</p>
+<p>Limitations of this review include the small number of studies and the small sample sizes. Most of the measures were also self-reported, which leaves room for error.</p>
+<p>Also, the FDA has not approved these types of medications for menopausal brain fog, meaning using them for these purposes would be off-label.</p>
+<p>“ADHD medications are not without risks, and I think it is too early to use them routinely for menopausal ‘brain fog,’” said Vaughn.</p>
+<p>ADHD medications can carry risks, including cardiovascular side effects. Stimulants such as lisdexamfetamine also have the potential for misuse and dependence. These medications should only be used with medical supervision.</p>
+<p>“I am a strong proponent of treating the underlying disorder rather than treating isolated symptoms. ADHD and menopausal cognitive symptoms may look alike, but that does not mean they share the same underlying mechanism—or require the same treatment,” noted Vaughn.</p>
+<p>Further research, including additional long-term prospective studies, is needed before clinical guidance can be changed</p>
+<p>“We hope this opens up the conversations with patients and providers. We recommend clinicians to screen patients for ADHD and, for those who screen positive, refer them to our psychiatric colleagues who have the knowledge and resources to perform a diagnostic test so that those women who have gone undiagnosed with ADHD can get the treatment they need and deserve,” said Tat.</p>
+<p>According to the National Council on Aging (NCOA), your brain requires exercise to function optimally, just like your muscles do.</p>
+<p>Ways to help keep your brain sharp and manage menopausal brain fog include:</p>
+<p>The NCOA also suggests keeping your brain well-exercised by:</p>
+<p>You can also speak with your healthcare professional about how menopause, estrogen levels, hormone therapy, and modifiable risk factors like a sedentary lifestyle or high blood pressure can affect cognitive health.</p>
+<p>“I want clinicians to know that they must take brain fog seriously. Ask whether the symptoms are new or a lifelong pattern that menopause has worsened. ADHD in women often goes unrecognized for decades,” said Tat.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/adhd-medications-may-help-ease-menopausal-brain-fog" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#15. Why Living with Endometriosis May Double Your Odds of Migraine</h2>
+    <div class="article-meta">
+        📅 Oct 22, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/women-with-endometriosis-more-likely-to-experience-migraine" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2160594360_facebook_1200x630-1200x628.jpg" alt="Why Living with Endometriosis May Double Your Odds of Migraine" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2160594360_facebook_1200x630-1200x628.jpg" alt="Why Living with Endometriosis May Double Your Odds of Migraine" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>In a new analysis, researchers found females with endometriosis were 2.3 times more likely to also have migraine, and they said the two conditions may share a pain pathway involving nerves and inflammation.Recognizing that connection earlier could lead to coordinated care for both conditions, the researchers said.The analysis, presented at the American Neurological Association (ANA) Annual Meeting in San Diego on October 20, included more than 13 million females. The research hasn’t yet been published in a peer-reviewed scientific journal.</p>
+<p>Endometriosis occurs when tissue similar to what lines the uterus grows outside the uterus, Mallory Stuparich, MD, a gynecologic surgeon at MemorialCare Miller Children’s & Women’s Hospital in Long Beach, California, told Healthline. Stuparich was not involved in the study.Yohannes Woubishet Woldeamanuel, MD, lead author of the study and assistant professor of neurology at Mayo Clinic Arizona, told Healthline that migraine also involves more than one part of the body.“Migraine is more than a headache,” he said.Headache is one symptom, Woldeamanuel said, but migraine can also cause sensory, motor, and balance symptoms.“Migraine is a little complex. It’s a multiple-nervous system involving a condition,” he said.</p>
+<p>Stuparich said endometriosis pain typically develops in 2 ways. The first starts in the lesions themselves.“There are inflammatory markers that are created by the endometriosis lesions themselves, and those inflammatory markers can irritate the nerves that live close by the lesions,” she said.The second involves the nervous system, Stuparich said. Scar tissue can grow its own nerve supply, and years of chronic pain can change how the nervous system responds. That adaptation can “perpetuate pain or make people feel sensations that normally wouldn’t be painful,” she said.Stuparich said the inflammatory and immune processes involved in endometriosis have “pretty significant overlap in the setting of migraines.”</p>
+<p>One possible link between the two conditions is calcitonin gene-related peptide (CGRP), a chemical messenger that helps transmit pain signals, the researchers said.CGRP plays a key role in migraine attacks, Woldeamanuel said, and blocking it reduces those attacks. CGRP medications work by blocking the sites where CGRP attaches or by binding to CGRP itself.Researchers have also found CGRP in endometriosis tissue.</p>
+<p>A 2024 study published in Science Translational Medicine found CGRP in endometriosis lesions from both people and mice. In mice, blocking CGRP signaling reduced pain and reduced lesion size.</p>
+<p>Other studies point to shared biology between the two conditions:</p>
+<p>Stuparich said she was “not surprised at all” by the finding because it matches what she sees in her own patients.“We see this overlap of patients who have endometriosis also having migraines,” she said.Stuparich said the science still has gaps. She noted that nothing has been proven conclusively in peer-reviewed research yet, but the way both diseases behave supports a connection.“It makes sense that there would be overlap,” she said.</p>
+<p>Endometriosis and migraine are treated by different specialists, so the overlap is easy to miss, Woldeamanuel said.For the analysis, researchers at Mayo Clinic Arizona reviewed 35 studies published over 50 years, comparing migraine rates among 207,675 females with endometriosis and 12,963,120 females without the condition.Short-term health records miss up to 90% of that overlap, according to the analysis. Migraine rates in females with endometriosis changed depending on how each study identified migraine.“This data is hiding,” Woldeamanuel said.</p>
+<p>“These two clinics are siloed. One clinic doesn’t ask about the other condition. They just focus on their own specialty,” Woldeamanuel said.The findings of the analysis have not been published in a peer-reviewed journal.</p>
+<p>Some treatments already overlap, Stuparich said. Hormonal birth control “can sometimes be used to treat menstrually associated migraines,” she said.Stuparich said she has heard anecdotally of patients whose endometriosis symptoms improved after they started CGRP medications for migraine, though long-term data are still lacking.The researchers said the findings support studying whether existing CGRP-blocking migraine medications could also relieve endometriosis pain, potentially offering one treatment for both conditions.Woldeamanuel leads a planned Mayo Clinic trial testing one of those medications, rimegepant (Nurtec ODT), for endometriosis pain. The trial will also track migraine days in participants who have both conditions. It’s expected to finish in 2031, according to ClinicalTrials.gov.</p>
+<p>People who suspect they have both conditions can take steps now to get them treated together, Stuparich said.Patients can raise the connection themselves, Stuparich said. She suggested a starting point for each appointment:</p>
+<p>Patients can also ask for an early referral to the other specialist so both conditions get coordinated care, Woldeamanuel said. “The earlier it’s diagnosed, the better it’s managed,” he said.Stuparich said doctors are moving away from viewing endometriosis as only a gynecologic disorder because it can affect the whole body.“It is a whole body systemic neuroinflammatory neuroimmune disorder,” she said.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/women-with-endometriosis-more-likely-to-experience-migraine" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#17. RFK Jr.’s Revised Vaccine Schedule May Cause 83% Surge in Hepatitis B Infections</h2>
+    <div class="article-meta">
+        📅 Oct 21, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/rfk-jr-vaccine-schedule-changes-may-cause-surge-hepatitis-b" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/rfk_vaccine_schedule-facebook-1200x630-1-1200x628.jpg" alt="RFK Jr.’s Revised Vaccine Schedule May Cause 83% Surge in Hepatitis B Infections" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/rfk_vaccine_schedule-facebook-1200x630-1-1200x628.jpg" alt="RFK Jr.’s Revised Vaccine Schedule May Cause 83% Surge in Hepatitis B Infections" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Health and Human Services Secretary Robert F. Kennedy Jr.’s proposed changes to the childhood vaccine schedule have raised alarm among public health experts and researchers.</p>
+<p>Concerns include a rise in preventable infectious diseases such as measles, polio, and hepatitis B.</p>
+<p>A new study suggests that delaying or foregoing the hepatitis B shot for newborns could increase chronic infections among children.</p>
+<p>In December 2025, the Centers for Disease Control and Prevention (CDC) ended its recommendation for universal hepatitis B vaccination at birth for infants whose mothers test negative for the virus. Instead, the federal health agency recommends individual-based clinical decision making.</p>
+<p>After reviewing the evidence, the CDC, which is overseen by the HHS, concluded that newborns “face little risk of contracting hepatitis,” which deemed the vaccine, typically administered at birth, unnecessary.</p>
+<p>Experts say this shift in public health policy wasn’t based on science, and researchers warn of rising infection rates.</p>
+<p>“Hepatitis B immunizations have been proven to protect individuals against a serious and significant disease,” said Graham Tse, MD, pediatrician and chief medical officer of MemorialCare Miller Children’s & Women’s Hospital in Long Beach, CA.</p>
+<p>“The hepatitis B vaccines have several decades of history and have been proven safe and effective,” Tse said. “There has been no new data or evidence presented or uncovered to support delaying the newborn dose of hepatitis B.”</p>
+<p>Here’s what parents should know about making informed decisions with their child’s healthcare team.</p>
+<p>A U.S. modeling study published in Annals of Internal Medicine on October 20 projected that delaying the first vaccine dose until 2 months could increase chronic hepatitis B infections among infants by 19% under one scenario.</p>
+<p>With shared decision making and lower vaccine uptake, projected increases ranged from 83% to 225%, compared with universal birth-dose vaccination.</p>
+<p>The researchers also estimated that up to 1.8 million young adults could remain susceptible to hepatitis B by age 20 under shared decision making, compared with 232,000 under universal birth dosing.</p>
+<p>Another study published in JAMA Pediatrics in late April projected hundreds of additional chronic infections annually if the hepatitis B birth dose were delayed or omitted.</p>
+<p>However, these figures are model-based projections, rather than verified outcomes. Actual results will depend on vaccination rates and other factors.</p>
+<p>In December 2025, the Centers for Disease Control and Prevention (CDC) adopted a recommendation shifting away from universal hepatitis B vaccination at birth for infants whose mothers test negative for hepatitis B surface antigen (HBsAg).</p>
+<p>Under the new approach, parents and healthcare professionals can decide together whether to give the first dose at birth or defer it until the baby is 2 months old.</p>
+<p>The change followed an 8 to 3 vote by the Advisory Committee on Immunization Practices (ACIP), marking a departure from longstanding U.S. guidance.</p>
+<p>However, infants born to mothers who test positive for hepatitis B or whose infection status is unknown should still receive the hepatitis B vaccine and hepatitis B immune globulin (HBIG) within 12 hours of birth, according to the updated guidelines.</p>
+<p>Hepatitis B is a viral infection that affects the liver.</p>
+<p>Although some infections resolve, newborns and infants face a higher risk of developing lifelong hepatitis B infection compared with adults.</p>
+<p>Up to 90% of infants infected during their first year develop chronic hepatitis B.</p>
+<p>“We have actual world evidence that vaccinating newborns for hepatitis B prevents hepatitis B infections later in life and the serious complications of that disease,” Tse said.</p>
+<p>Over time, chronic infection can lead to cirrhosis, liver failure, or liver cancer.</p>
+<p>“The danger of delaying the newborn hepatitis B shot is that individuals do not get vaccinated and thereby do not have protection against hepatitis B,” Tse said.</p>
+<p>Early vaccination helps protect young infants before potential exposure occurs, including situations in which maternal screening misses an infection.</p>
+<p>“Newborns can be infected with hepatitis B from a mother who is not aware they have a hepatitis B infection or from exposure later in life,” Tse said.</p>
+<p>“The risk is developing a hepatitis B infection, which can potentially lead to liver cancer, fulminant hepatitis, or severe end-stage liver disease.”</p>
+<p>In contrast to the CDC, the American Academy of Pediatrics (AAP) still recommends a universal hepatitis B vaccine dose within 24 hours of birth, followed by additional doses during infancy.</p>
+<p>The leading pediatric medical organization has raised concerns about the potential consequences of reduced vaccination rates.</p>
+<p>The hepatitis B vaccine has decades of safety and effectiveness data.</p>
+<p>Tse said the AAP’s vaccine schedule and recommendations are based on decades of study, use, and expert input, and provide the best protection against vaccine-preventable diseases.</p>
+<p>Parents who have questions about potential side effects, timing, or their baby’s individual risk should discuss them with a qualified healthcare professional.</p>
+<p>“Parents are confused, given the recommendations from CDC, HHS, and Kennedy differ from established and respected groups such as the American Academy of Pediatrics, the Infectious Disease Society of America, and several states,” Tse said.</p>
+<p>“Parents desire to keep their children safe, and having differing opinions and confusion will lead to reduced vaccination rates as parents experience doubt as to whom to listen to or believe.”</p>
+<p>While the updated CDC policy offers more flexibility for some families, lower vaccination uptake could lead to an increase in chronic hepatitis B infections.</p>
+<p>Ask your pediatrician about the benefits of vaccination against hepatitis B at birth, the risks of delaying the first dose, and the recommended schedule for completing the series.</p>
+<p>You can also ask how maternal screening results affect your baby’s protection.</p>
+<p>An informed conversation with your healthcare professional can help you weigh the evidence and choose a vaccination plan for your baby.</p>
+<p>“I see no argument whatsoever for changing the established vaccination schedule for hepatitis B,” Tse said.</p>
+<p>“There have been no new studies, no data, nor evidence to justify Kennedy’s proposed changes to the childhood immunization schedule. Delaying vaccinations or skipping vaccinations puts your child at risk for serious and significant diseases, which are all preventable,” Tse said.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/rfk-jr-vaccine-schedule-changes-may-cause-surge-hepatitis-b" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#18. Christina Applegate ‘Not Happy at All’ After Learning She Was Misdiagnosed With MS</h2>
+    <div class="article-meta">
+        📅 Oct 20, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/christina-applegate-reveals-misdiagnosed-ms" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/Christina_Applegate_MS_misdiagnosis-facebook-1200x630-1-1200x628.jpg" alt="Christina Applegate ‘Not Happy at All’ After Learning She Was Misdiagnosed With MS" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/Christina_Applegate_MS_misdiagnosis-facebook-1200x630-1-1200x628.jpg" alt="Christina Applegate ‘Not Happy at All’ After Learning She Was Misdiagnosed With MS" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Christina Applegate shared an unexpected health update on her return to the MeSsy podcast with co-host Jamie-Lynn Sigler.</p>
+<p>The two actors have detailed their experiences with multiple sclerosis (MS), a neurological disorder that can lead to debilitating symptoms affecting daily functioning and quality of life.</p>
+<p>Applegate, 54, has been raising awareness about the condition since her initial diagnosis in 2021.</p>
+<p>In two podcast episodes released October 20, Applegate revealed that doctors had told her she was misdiagnosed with MS.</p>
+<p>“She came into my room and said, ‘Congratulations, you don’t have MS,’ ” Applegate said as she fought back tears. “I was, like, not happy at all. Everybody else was so happy.”</p>
+<p>The “Anchorman” and “Dead to Me” actor explained that her symptoms have continued to worsen, leaving her without an explanation for what she’s experiencing as doctors investigate the cause.</p>
+<p>Being misdiagnosed with MS is relatively common. Applegate’s revelation highlights a difficult reality for people living with unexplained symptoms resembling MS. Her experience raises questions about how MS is diagnosed, why misdiagnoses may occur, and what people can do when their symptoms don’t match their diagnosis.</p>
+<p>While MS can be difficult to diagnose, an accurate diagnosis can help people with the condition gain access to appropriate treatment. A misdiagnosis, on the other hand, may lead to unnecessary interventions and medication, and take an emotional toll over time.</p>
+<p>“MS can be challenging to diagnose because there is no single test that confirms it in every case,” said Steve Allder, MD, consultant neurologist at Re:Cognition Health.</p>
+<p>“An incorrect diagnosis can have significant consequences. Someone incorrectly diagnosed with MS may experience considerable anxiety, undergo unnecessary investigations, or receive treatments with potential risks and side effects. Equally, if MS is missed, treatment may be delayed, potentially allowing further neurological damage,” Allder told Healthline.</p>
+<p>A 2024 systematic review and meta-analysis underscores that MS misdiagnoses remain a concern.</p>
+<p>Research suggests that around 15% of people diagnosed with MS may actually have another condition.</p>
+<p>However, estimates vary across studies, with some reporting rates ranging from 5–41%.</p>
+<p>While an accurate diagnosis can guide patients toward appropriate treatment, a mistaken one may lead to unnecessary medication, emotional distress, and years of uncertainty.</p>
+<p>New diagnostic guidelines offer hope for greater accuracy, but they also raise important questions about how doctors can adequately distinguish MS from other conditions.</p>
+<p>“Research has shown that MS can be both overdiagnosed and underdiagnosed,” Allder said.</p>
+<p>“Diagnosis relies on a combination of symptoms, neurological examination, MRI findings, and sometimes, additional tests. It is also important to recognize that diagnoses can evolve as new evidence emerges. As neurologists, we must remain open to revisiting a diagnosis when symptoms or test results do not fit, ensuring patients receive appropriate treatment and support.”</p>
+<p>MS symptoms may vary widely and overlap with several other conditions. These may include:</p>
+<p>Because these conditions share certain features with MS, healthcare professionals should consider a patient’s full clinical profile rather than relying on a single symptom or scan.</p>
+<p>“MS can cause numbness, tingling, muscle weakness, visual disturbances, balance problems, and fatigue. However, these symptoms are not unique to the condition,” Allder said.</p>
+<p>“For example, numbness and tingling may indicate peripheral neuropathy, sometimes associated with diabetes or vitamin B12 deficiency. Weakness or altered sensation may result from a trapped nerve or spinal cord compression. Migraines can cause visual disturbances and sensory symptoms, while inner-ear disorders may affect balance,” he continued.</p>
+<p>Allder noted that fatigue is particularly nonspecific and may be associated with:</p>
+<p>He explained that, as a neurologist, he considers the pattern, duration, and progression of symptoms alongside examination findings.</p>
+<p>“No single symptom automatically indicates MS. A thorough assessment is essential to identify the underlying cause and ensure the patient receives appropriate treatment,” he said.</p>
+<p>There is no single test that definitively confirms every case of MS.</p>
+<p>Diagnosis typically involves reviewing symptoms, conducting neurological examinations, and evaluating MRI scans and laboratory results.</p>
+<p>MRI findings may be tricky to interpret. Some white-matter spots resemble MS lesions but may result from migraine, aging, or other conditions. Misapplying diagnostic criteria or overlooking alternative explanations can also lead to mistakes.</p>
+<p>“MRI abnormalities alone do not confirm MS,” Allder said. “The diagnosis must be based on the overall clinical picture, with alternative explanations carefully considered.”</p>
+<p>Research also suggests that MS misdiagnosis rates may differ by sex.</p>
+<p>Research shows females are 2.1 times more likely to be misdiagnosed with MS than males, highlighting the potential for diagnostic bias and differences in how symptoms are evaluated.</p>
+<p>The updated MS diagnostic criteria published in 2025 offer a framework for improving diagnosis.</p>
+<p>The updated guidelines introduce several important changes.</p>
+<p>For instance, the optic nerve (the nerve connecting the eye to the brain) is now included as a fifth anatomical location for assessing evidence of MS.</p>
+<p>The revised criteria also include new MRI biomarkers, such as the central vein sign and paramagnetic rim lesions. These features can help doctors distinguish MS-related abnormalities from other conditions.</p>
+<p>These changes may help doctors diagnose MS earlier and more accurately.</p>
+<p>If you experience persistent or recurring neurological symptoms, seek medical advice. Your doctor can assess your symptoms and, if applicable, refer you to a neurologist.</p>
+<p>Sudden weakness, vision loss, or difficulty speaking requires urgent medical assessment, Allder said.</p>
+<p>“Depending on the findings, investigations may include MRI scans of the brain and spinal cord, blood tests, and, in some cases, a lumbar puncture,” Allder noted.</p>
+<p>“It is important that results are interpreted alongside symptoms and examination findings, as no single test should determine the diagnosis in isolation.”</p>
+<p>Allder said that if you’re unsure about a diagnosis, you can ask your neurologist what evidence supports it and whether alternative health conditions have been considered.</p>
+<p>“A second opinion or follow-up assessment may be appropriate. The priority is an accurate diagnosis that leads to the right treatment and support,” Allder said.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/christina-applegate-reveals-misdiagnosed-ms" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#19. ACOG Strongly Recommends Hormone Therapy for Menopause Symptoms</h2>
+    <div class="article-meta">
+        📅 Oct 20, 2026 &nbsp;|&nbsp; Category: <strong>Business</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/acog-strongly-recommends-hormone-therapy-menopause-symptoms" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2172967782_facebook_1200x630-1200x628.jpg" alt="ACOG Strongly Recommends Hormone Therapy for Menopause Symptoms" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_2172967782_facebook_1200x630-1200x628.jpg" alt="ACOG Strongly Recommends Hormone Therapy for Menopause Symptoms" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>The American College of Obstetricians and Gynecologists (ACOG) published updated recommendations for menopause management in Obstetrics & Gynecology on October 15.</p>
+<p>These expanded recommendations are the most comprehensive guidance to date. They include new clinical guidelines for menopause hormone therapy (MHT), nonhormonal medications, and nonpharmacological treatment of vasomotor symptoms (VMS), which include hot flashes and night sweats, and sleep and mood changes.</p>
+<p>According to the ACOG guidance, 50%–92% of females experiencing menopause report VMS.</p>
+<p>Around 16%–66% of females in the United States report menopause-related sleep issues, and more than one-third of perimenopausal and postmenopausal females report experiencing depressive symptoms.</p>
+<p>“In recent years, misconceptions about the risks of hormone therapy have been widespread, which has made some clinicians reluctant to prescribe it and some patients hesitant to use it,” Bruce Pier, MD, clinical professor and associate fellowship director at the University of North Carolina and collaborator on the ACOG clinical practice guidelines, told Healthline.</p>
+<p>“This guidance offers a comprehensive review of the evidence to support individualized counseling and shared decision making. Our hope is that it clears up those misconceptions and expands access to treatment.”</p>
+<p>The ACOG is also developing companion guidance for genitourinary syndrome of menopause, expected in 2027.</p>
+<p>The ACOG strongly recommends the use of MHT with estrogen and progestogens (or estrogen alone for people without a uterus) for both VMS and vasomotor-related sleep disturbance, in individuals who can use hormones.</p>
+<p>It also conditionally recommends conjugated estrogen plus bazedoxifene (Duavee) as an alternative for these issues.</p>
+<p>According to a meta-analysis from 2021 that was cited by the guidelines, estrogen therapy, with or without progestogens, significantly reduced VMS frequency and severity compared to a placebo or no treatment. A 2017 meta-analysis ranked transdermal estradiol plus a progestogen as the most effective option for reducing VMS frequency.</p>
+<p>A 2022 systematic review and meta-analysis, also cited by the guidelines, found that MHT was associated with improved self-reported sleep quality. Once again, transdermal therapies showed some of the largest effects.</p>
+<p>The ACOG recommends initiating MHT before age 60 or within 10 years of the onset of natural menopause..</p>
+<p>It also suggests that the decision to start MHT for VMS and vasomotor-related sleep disturbances should be based on a shared decision making discussion about an individual’s symptoms and the benefits and risks of therapy. Consideration should also be taken regarding an individual’s:</p>
+<p>Research shows that factors such as race, culture, socioeconomic status, gender identity, and sexual orientation can influence how individuals experience menopause and the care they receive.</p>
+<p>According to the SWAN study, Black women reported more menopause symptoms than white women but were less likely to be treated for them.</p>
+<p>“This updated document shines a light on these inequities. Clinicians can proactively help right now by asking every patient in midlife about symptoms, rather than waiting for them to bring it up. Long term, we hope this document drives more research funding to understand these gaps and begin closing them,” said Pier.</p>
+<p>The ACOG stated in the guidelines that, “The available evidence is insufficient to recommend for or against the use of estrogen–progestogen or estrogen-only MHT for the treatment of menopause-related depressive symptoms.”</p>
+<p>It recommends that perimenopausal and postmenopausal individuals who meet the diagnostic criteria for major depressive disorder (MDD) or those whose most noticeable symptom is depression should be treated according to depression management guidelines.</p>
+<p>Current treatment guidelines for depression include therapy, medication, or a combination of the two.</p>
+<p>Psychological treatments for depression include psychotherapy, such as cognitive behavioral therapy (CBT), while antidepressants are among the most commonly prescribed medications.</p>
+<p>The ACOG strongly recommends the use of selective serotonin reuptake inhibitors (SSRIs) and serotonin and norepinephrine reuptake inhibitors (SNRIs) for the management of menopausal symptoms like VMS and depression in individuals who don’t want to use MHT or can’t use it.</p>
+<p>Currently, paroxetine is the only antidepressant that is approved by the Food and Drug Administration (FDA) for the management of VMS.</p>
+<p>The ACOG also strongly recommends the use of neurokinin receptor antagonists to manage VMS and vasomotor-related sleep disturbances in people who don’t desire hormone therapy or can’t use it.</p>
+<p>There are currently two neurokinin receptor antagonists approved by the FDA to manage menopause symptoms. Fezolinetant (Veozah) was approved in 2023 to help manage hot flashes. In 2025, the FDA approved elinzanetant (LYNKUET) for the management of moderate to severe VMS due to menopause.</p>
+<p>Another nonhormonal treatment for VMS that the ACOG conditionally recommends is gabapentin.</p>
+<p>There are various nonpharmacologic treatments that the ACOG conditionally recommends for the management of VMS, vasomotor-related sleep disturbances, and mood changes. These are treatments that don’t involve the use of medications.</p>
+<p>The nonpharmacologic treatments conditionally recommended include:</p>
+<p>It is generally recommended that these interventions are used alongside hormonal or nonhormonal medications.</p>
+<p>The ACOG noted that there is not enough evidence to support the efficacy or safety of phytoestrogens, such as soy isoflavones, or herbal supplements, which are not regulated by the FDA in the same way medications are for safety, purity, or efficacy.</p>
+<p>“Menopause is finally getting the attention it deserves, and this document shows what evidence-based care should look like in this space. It lays out a range of safe, effective options for managing menopause symptoms. My message to anyone struggling with these symptoms is simple: talk to your clinician. You don’t have to suffer through them,” said Pier.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/acog-strongly-recommends-hormone-therapy-menopause-symptoms" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#20. A Handful of Pistachios May Help You Sleep Better, Review Says</h2>
+    <div class="article-meta">
+        📅 Oct 19, 2026 &nbsp;|&nbsp; Category: <strong>Business</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/pistachios-may-support-sleep-review-finds" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1942035162_facebook_1200x630-1200x628.jpg" alt="A Handful of Pistachios May Help You Sleep Better, Review Says" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1942035162_facebook_1200x630-1200x628.jpg" alt="A Handful of Pistachios May Help You Sleep Better, Review Says" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Could a handful of pistachios before you go to bed really help you sleep better?</p>
+<p>A review of studies published in Nutrition Research Reviews examines how the nutrients and plant compounds in pistachios might influence sleep health.</p>
+<p>Pistachios contain several nutrients linked to sleep-related processes, prompting an investigation into whether they might offer benefits beyond their nutritional value.</p>
+<p>While the findings suggest that pistachios may support sleep, the evidence is inconclusive and warrants further study.</p>
+<p>“Pistachios are compelling for sleep research because they bring together several nutrients and plant compounds connected to sleep physiology within one whole food,” said study author Marie-Pierre St-Onge, PhD, professor of nutritional medicine and director of the Center of Excellence for Sleep & Circadian Research in the Department of Medicine at Columbia University Institute of Nutrition, in a news release.</p>
+<p>“Rather than focusing on a single ‘sleep nutrient,’ this review provides a rationale for studying how the complete pistachio food matrix may affect sleep-related pathways,” she continued.</p>
+<p>The narrative review examined existing research on pistachios and sleep-related biology.</p>
+<p>The researchers explored whether the combination of nutrients in pistachios could promote quality sleep.</p>
+<p>Rather than identifying pistachios as a sleep remedy, the researchers outlined biological pathways through which their nutrients and bioactive compounds might influence sleep.</p>
+<p>“We were particularly interested in pistachios because they are particularly high in phytomelatonin, polyphenols, and carotenoids, which we noted were plant-derived components that had been shown to have sleep benefits in preclinical studies,” St-Onge told Healthline.</p>
+<p>“We also noted their high content of tryptophan and vitamin B6, which are relevant to melatonin production in humans,” she continued.</p>
+<p>Pistachios contain several nutrients associated with sleep, including melatonin, which helps regulate the sleep-wake cycle.</p>
+<p>Other studies examining the effects of some of these nutrients on sleep offer further context.</p>
+<p>A 2021 systematic review and meta-analysis of tryptophan supplementation found that it may reduce wakefulness after sleep onset, particularly at doses of at least 1 gram (g) daily. However, an ounce of pistachios supplies only about 71 mg, which is much less than the doses examined by the researchers.</p>
+<p>Additionally, a 2023 review of dietary polyphenols led by St-Onge identified potential links between plant compounds and sleep outcomes, although results varied across studies.</p>
+<p>Neither review established that polyphenols or tryptophan from pistachios specifically affected sleep quality.</p>
+<p>“I was not surprised that pistachios may help support sleep, given their combination of nutrients involved in sleep regulation,” said Michelle Routhenstein, MS, a preventive cardiology dietitian at EntirelyNourished, who wasn’t involved in the study.</p>
+<p>“Pistachios provide tryptophan, an amino acid the body uses to produce serotonin and melatonin; vitamin B6, which supports these pathways; and magnesium, which plays a role in nervous system function and sleep regulation,” she told Healthline.</p>
+<p>The new review highlights the concept of the “food matrix,” or how nutrients and bioactive compounds interact within a whole food.</p>
+<p>Instead of investigating tryptophan, magnesium, or melatonin individually, researchers were curious about the combined effects of consuming them together in pistachios.</p>
+<p>Laboratory and simulated-digestion research offers clues about how fiber and plant compounds in pistachios and peanuts interact with gut microbes. However, these findings do not establish that eating pistachios changes sleep quality in real-world conditions.</p>
+<p>Broader nutrition research also points to a relationship between diet and sleep.</p>
+<p>A 2021 review in the Annual Review of Nutrition examined evidence linking dietary patterns and individual nutrients to sleep outcomes. The findings suggest a relationship between sleep and diet, but note that more research is needed to determine cause and effect.</p>
+<p>In a nutshell, the current evidence builds a compelling case for pistachios as a sleep aid.</p>
+<p>However, it’s too soon to recommend pistachios as a sleep remedy, as many factors may affect sleep quality and insomnia.</p>
+<p>“Sleep difficulties can have different underlying causes,” Routhenstein noted. “If inadequate intake of these nutrients is a contributing factor, pistachios may help, but they may not address sleep issues related to other nutrient deficiencies or other causes.”</p>
+<p>Much of the supporting evidence cited in the review comes from studies of individual nutrients, other foods, laboratory experiments, or biological mechanisms rather than from trials involving whole pistachios.</p>
+<p>Researchers have also reported significant variations in the melatonin content of pistachios, making the amount in a typical serving difficult to pinpoint.</p>
+<p>Additionally, the review received support from American Pistachio Growers, and the corresponding author, St-Onge, serves on its advisory board. Larger studies and clinical trials are needed, ideally without industry funding, to ensure well-rounded results.</p>
+<p>Indeed, the authors call for randomized controlled trials examining whether eating pistachios affects sleep outcomes, including sleep quality, duration, and melatonin levels.</p>
+<p>“This was a review; we noted that the complete profile of pistachios would make them well-suited to support healthful sleep, but research is needed to evaluate this,” St-Onge told Healthline.</p>
+<p>“This is the next step, and something we are actively working on. We also need to better understand what dosage and frequency of consumption would be optimal.”</p>
+<p>Regardless, a handful of pistachios is still considered a healthy choice as part of a balanced diet.</p>
+<p>“A small handful, about 1 ounce of shelled pistachios, is an appropriate portion,” Routhenstein said. “Enjoy them during the day or as a light afternoon or evening snack when you’re hungry.”</p>
+<p>If nutrients like tryptophan help promote sleep, it’s possible that other nuts could yield similar results.</p>
+<p>“Other nuts, such as almonds and walnuts, may offer similar benefits because they also contain nutrients involved in sleep regulation,” Routhenstein said.</p>
+<p>“Early research is encouraging, but it’s too soon to say how much they might help.”</p>
+<p>Other foods, like turkey, also contain tryptophan.</p>
+<p>“For someone allergic to nuts, foods such as tofu, beans, oats, eggs, dairy, and fish can provide tryptophan, which the body uses to make serotonin and melatonin,” Routhenstein said. “The goal is to meet their nutrient needs rather than rely on one food to improve sleep.”</p>
+<p>Sleep health depends on multiple factors. As such, Routhenstein recommends a personalized approach to getting better sleep, from what you eat and when you eat to addressing any nutritional gaps.</p>
+<p>“I would also encourage regular, balanced meals throughout the day to support blood sugar management, especially for those with diabetes, while avoiding large meals close to bedtime,” Routhenstein said. “Caffeine later in the day and alcohol in the evening are also worth considering as possible sleep disruptors.”</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/pistachios-may-support-sleep-review-finds" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#21. Ultra-Processed Food Intake May Increase Dementia, Stroke Risk</h2>
+    <div class="article-meta">
+        📅 Oct 18, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/ultra-processed-food-intake-linked-to-higher-dementia-stroke-risk" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1835501914_facebook_1200x630-1200x628.jpg" alt="Ultra-Processed Food Intake May Increase Dementia, Stroke Risk" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1835501914_facebook_1200x630-1200x628.jpg" alt="Ultra-Processed Food Intake May Increase Dementia, Stroke Risk" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Your hub for heart health management, insights, and solutions</p>
+<p>Healthy adults who eat high levels of ultra-processed foods (UPFs) may be more likely to show signs of damage to the brain that could increase the likelihood of stroke and future memory problems, according to a study published October 15 in JAMA Network Open.</p>
+<p>UPFs are often defined using the NOVA classification: These foods typically have 5 or more ingredients and include substances not typically found in culinary preparations. This category of foods includes packaged snack foods, sugary cereals, soft drinks, and frozen ready-to-eat meals.</p>
+<p>UPFs account for more than 50% of daily energy intake in high-income countries, including the United States, Canada, and the United Kingdom.</p>
+<p>Previous research has linked these foods to adverse cardiometabolic outcomes. This new study adds to growing evidence linking high UPF intake to adverse health outcomes.</p>
+<p>This was a cross-sectional analysis of 8,783 adults between the ages of 35 and 69 without cardiovascular disease. The participants were all enrolled in the Canadian Alliance for Healthy Hearts and Minds (CAHHM) and Prospective Urban and Rural Epidemiology-MIND (PURE-MIND) cohorts.</p>
+<p>The researchers used MRI scans to evaluate the participants’ brains. They also set out to analyze the cross-sectional relationship between UPF consumption, body fat, vascular brain injury (VBI), and cognitive performance.</p>
+<p>They measured the participants’ habitual UPF intake using a food frequency questionnaire. Intake was expressed as servings based on a 2,000-calorie-per-day diet.</p>
+<p>UPFs accounted for an average of 25% of participants’ daily diets. For the individuals with the highest intake, this increased to 45% of everything on their plates, compared to 16% for those who ate the least.</p>
+<p>The researchers also noted that UPFs were not just an added part of individual diets. These foods appeared to replace whole foods.</p>
+<p>Among people with the highest UPF intake, fruits, vegetables, grains, and other minimally processed foods accounted for 41% of their daily food intake. Among those with the lowest UPF intake, minimally processed foods made up 68% of their daily intake.</p>
+<p>When the researchers compared the highest intake to the lowest, they found that those with a higher intake of UPFs had 1.7% more body fat. They also found that people with a higher UPF intake had higher odds of VBI.</p>
+<p>“These findings are concerning, but it is important to remember that an association does not prove cause and effect,” said Michelle Routhenstein, Preventive Cardiology Dietitian at Entirely Nourished, who wasn’t involved in the study.</p>
+<p>“From my perspective as a preventive cardiology dietitian, these findings reinforce the importance of nourishing our blood vessels to support both cardiovascular and brain health.”</p>
+<p>Although researchers found no significant differences in cognitive performance, the signs of vascular brain injury observed in the study have been associated with an increased risk of stroke and cognitive decline.</p>
+<p>These findings suggest a possible link between UPF intake and signs of brain changes. However, participants were only assessed once and weren’t followed over time. This means the researchers were unable to determine whether UPFs directly caused the changes.</p>
+<p>“While we can’t conclude from this study that limiting UPFs would improve brain health, we have decades of literature demonstrating that higher intakes of green leafy vegetables, brightly colored fruits, whole grains, and lean protein sources are good for brain health,” said Suzanne Judd, PhD, Director of the UC College of Medicine’s Center for Public Health, who wasn’t involved in the study.</p>
+<p>“So focusing more on what can be brought into the diet rather than what should be eliminated might be a good way to start,” she added.</p>
+<p>The preservatives [in UPFs] may have a direct impact on the vascular system, while the loss of antioxidants results in a less robust response to inflammation in the body.</p>
+<p>“Additionally, sugar or salt is often added to make the food a bit tastier so people consume it in higher quantities. Over-consumption of food can lead to weight gain and diabetes, which can negatively impact brain health,” Judd said.</p>
+<p>Judd told Healthline that it is virtually impossible to completely avoid UPFs. Even some “health” foods, like protein powder and some yogurts, are considered ultra-processed.</p>
+<p>It is more important to look at diet overall and emphasize consuming foods as close to their natural state as possible, such as fruits, vegetables, grains, and meats purchased raw or frozen and then cooked at home.</p>
+<p>Routhenstein recommended starting simply with one manageable swap rather than trying to overhaul your entire diet.</p>
+<p>She said that you should identify an ultra-processed food you eat regularly and consider a more nutrient-rich alternative. It is important to account for convenience, food preferences, budget, and lifestyle so that the change feels realistic and is sustainable over the long term.</p>
+<p>“I want people to feel empowered, not fearful, when making food choices,” said Routhenstein. “Healthy eating does not mean having to cook everything from scratch. What matters most is building consistent, nourishing habits that support both heart and brain health.”</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/ultra-processed-food-intake-linked-to-higher-dementia-stroke-risk" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article>
+<article class="article-card">
+    <h2>#22. Walking, Yoga, or Zumba? Which Exercises Help Relieve Menopause Mood Symptoms</h2>
+    <div class="article-meta">
+        📅 Oct 17, 2026 &nbsp;|&nbsp; Category: <strong>Health</strong> &nbsp;|&nbsp; 
+        <a href="https://www.healthline.com/health-news/physical-activity-may-improve-mood-and-quality-of-life-during-menopause" target="_blank" rel="nofollow">Read Source &rarr;</a>
+    </div>
+    <div class="article-body">
+        <img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1278449921_facebook_1200x630-1200x628.jpg" alt="Walking, Yoga, or Zumba? Which Exercises Help Relieve Menopause Mood Symptoms" loading="lazy">
+        
+            <div style="text-align:center; margin-bottom:20px;"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/10/getty_1278449921_facebook_1200x630-1200x628.jpg" alt="Walking, Yoga, or Zumba? Which Exercises Help Relieve Menopause Mood Symptoms" style="max-width:100%; height:auto; border-radius:8px;" loading="lazy"></div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            <div class="article-body" style="font-size: 16px; line-height: 1.8; color: #333;">
+                <p>Follow Healthline on our socials for all things health.</p>
+<p>Physical activity may help support mood and improve quality of life during the menopause transition, according to a study published on October 13 in Menopause, the journal of the Menopause Society.</p>
+<p>This review of 12 clinical trials involving over 1,000 people ages 40 to 65 found that both aerobic and mind-body exercises may be associated with reduced depressive symptoms and improved well-being.</p>
+<p>It is common for individuals to experience psychological symptoms during menopause, including depression, anxiety, low mood, stress, and difficulty with thinking and memory. These symptoms can have a significant effect on quality of life, with an estimated 1 in 10 women leaving work due to menopause symptoms.</p>
+<p>This study found that regular physical activity may help improve certain psychological symptoms and overall quality of life during menopause.</p>
+<p>The types of physical activity in the review were broken into two categories: aerobic-based exercise (ABIs) and mind-body activities (MBAs).</p>
+<p>The researchers found that ABIs showed the strongest effects on reducing depressive symptoms and improving overall quality of life. This may be particularly relevant during perimenopause when women may be more vulnerable to mood instability due to estrogen fluctuations.</p>
+<p>Sherry Ross, MD, board certified OB/GYN and Women’s Health Expert at Providence Saint John’s Health Center in Santa Monica, CA, who wasn’t involved in the study, pointed out that there are various ways that ABIs can have positive effects.</p>
+<p>Ross explained that aerobic exercise may help improve menopausal symptoms through several mechanisms, including the release of endorphins, reduced inflammation, improved cholesterol levels, and better regulation of body temperature and sleep cycles.</p>
+<p>MBAs were shown to have a greater effect on improving psychological quality of life. These exercises involve mindfulness, body awareness, and breathwork. They may help improve emotional regulation.</p>
+<p>ABIs tended to require fewer sessions. This may mean these types of exercises are easier to fit in, especially if you are facing time or energy constraints. For example, in one trial, participants were instructed to walk for 30 minutes, three times per week. In another trial, participants attended three hour-long Zumba classes per week.</p>
+<p>In contrast, one trial using MBAs instructed participants to attend two 75-minute yoga classes each week, and another had participants attend daily one-hour yoga classes.</p>
+<p>Stephanie Faubion, MD, Director for the Mayo Clinic Center for Women’s Health and Medical Director for The Menopause Society, who wasn’t involved in the study, told Healthline that these findings are encouraging.</p>
+<p>However, she also cautioned that this was a relatively small body of evidence. “While physical activity is an important component of a healthy lifestyle during midlife, I would be cautious about interpreting these findings to mean that exercise is a treatment for depression related specifically to menopause,” she said.</p>
+<p>Research has shown that physical activity can positively affect mental health. Studies have also found that regular exercise can help improve symptoms of depression and anxiety.</p>
+<p>Faubion told Healthline that, broadly speaking, regular physical activity may support mood through multiple pathways, including better sleep, improved physical function, and overall well-being.</p>
+<p>However, she also noted that this study cannot tell us precisely why the improvements occurred or whether aerobic exercise is superior to other forms of activity.</p>
+<p>Faubion said that recommending physical activity during and after menopause extends well beyond mood.</p>
+<p>“Physical activity is important for cardiovascular and metabolic health, maintaining muscle mass and physical function, and supporting bone health,” she said.</p>
+<p>“These become particularly important at midlife as women experience age- and menopause-related changes in body composition, bone, and cardiometabolic health,” Faubion added.</p>
+<p>Ross agreed that physical activity is important for more than just mood and mental health improvement. She also noted that there are other types of exercise beyond ABIs and MBAs that can benefit people during menopause:</p>
+<p>“These types of activities help with weight loss or allow women to maintain a healthy weight. If you are not ready for aerobic exercises, stretching and simple exercises help with balance and stability,” Ross said.</p>
+<p>Faubion told Healthline that physical activity is an important part of healthy aging and should be encouraged during the menopause transition, but it should not be suggested that women can simply exercise their way out of significant depression or other bothersome menopause symptoms.</p>
+<p>“Women experiencing persistent depression, anxiety, or symptoms that interfere with their quality of life should seek evaluation and discuss the full range of evidence-based treatment options with their healthcare clinician,” Faubion said.</p>
+                <p style="margin-top: 25px;">
+                    <a href="https://www.healthline.com/health-news/physical-activity-may-improve-mood-and-quality-of-life-during-menopause" target="_blank" rel="nofollow noopener" style="color: #0d6efd; text-decoration: none; font-weight: bold;">
+                        &rarr; Baca artikel asli
+                    </a>
+                </p>
+            </div>
+            
+<div style="text-align:center; margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+            
+        
+<div style="text-align:center;margin:20px 0;">
+    <script type="text/javascript">
+        atOptions = {
+            'key' : 'f9e40eb3b3cd05f1038aac7b36b33ad2',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+        };
+    </script>
+    <script type="text/javascript" src="https://upholdbrilliancerecast.com/f9e40eb3b3cd05f1038aac7b36b33ad2/invoke.js"></script>
+</div>
+
+    </div>
+</article><div class="pagination"><a href="index.html">1</a><a href="page2.html" class="active">2</a><a href="page3.html">3</a><a href="page4.html">4</a><a href="page5.html">5</a><a href="page6.html">6</a><a href="page7.html">7</a></div><footer>&copy; 2026 News Portal Indonesia. All rights reserved.</footer>
+</div></body></html>
